@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Report</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
+
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+label { display:block; margin-top:12px; font-weight:bold; }
+input, textarea {
+  width:100%;
+  padding:6px;
+  margin-top:4px;
+}
+button {
+  margin-top:15px;
+  padding:10px 20px;
+  font-size:16px;
+}
+pre {
+  white-space:pre-wrap;
+  background:#f7f7f7;
+  padding:15px;
+  border:1px solid #ccc;
+  margin-top:20px;
+}
+.section {
+  margin-top:20px;
+  padding-top:10px;
+  border-top:2px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<h2>പ്രോഗ്രാം വിവരങ്ങൾ</h2>
+
+<label>തീയതി</label>
+<input type="date" id="date">
+
+<p><b>സ്ഥലം:</b> ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്</p>
+
+<datalist id="nameList">
+  <option value="മുഹ്സിൻ കാഞ്ഞങ്ങാട്">
+  <option value="മുബാറക്ക് കാഞ്ഞങ്ങാട്">
+  <option value="നിസാർ കാഞ്ഞങ്ങാട്">
+  <option value="റിയാസ് കാഞ്ഞങ്ങാട്">
+  <option value="സഫ്‌വാൻ കാഞ്ഞങ്ങാട്">
+  <option value="അൻസൽ കാഞ്ഞങ്ങാട്">
+  <option value="ശാഹിദ് കാഞ്ഞങ്ങാട്">
+  <option value="അഷ്റഫ് കാഞ്ഞങ്ങാട്">
+  <option value="സത്താർ കാഞ്ഞങ്ങാട്">
+</datalist>
+
+<div class="section">
+<h3>ഇമാം / നേതൃത്വം</h3>
+
+<label>മഗ്രിബ് ഇമാം</label>
+<input list="nameList" id="maghrib">
+
+<label>നേതൃത്വം</label>
+<input list="nameList" id="family">
+
+<label>ദർസ് നടത്തുന്നവർ</label>
+<input list="nameList" id="dars">
+
+<label>ദർസ് അവലംബം</label>
+<input id="darsRef">
+</div>
+
+<div class="section">
+<h3>ഖുർആൻ & ഖസീദ</h3>
+
+<label>ഖുർആൻ പേജ് നമ്പർ</label>
+<input id="surahPage">
+
+<label>ആയത്ത് നമ്പർ</label>
+<input id="ayah">
+
+<label>ഖസീദ പേജ് നമ്പർ</label>
+<input id="qPage">
+
+<label>ബൈത് നമ്പർ</label>
+<input id="baith">
+</div>
+
+<div class="section">
+<h3>ഹള്റ</h3>
+
+<label>മുസ്തഫ്തിഹ്</label>
+<input list="nameList" id="mustafthih">
+
+<label>ബുസ്ത് 1 (main)</label>
+<input list="nameList" id="bust1Main">
+
+<label>ബുസ്ത് 1 (പങ്കെടുക്കുന്നവർ)</label>
+<textarea id="bust1List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+
+<label>മദദ്</label>
+<input list="nameList" id="madad">
+
+<label>ഖസീദ 1</label>
+<input list="nameList" id="q1">
+
+<label>ഖസീദ 2</label>
+<input list="nameList" id="q2">
+
+<label>ഫർദാനി</label>
+<input list="nameList" id="fardani">
+
+<label>ബുസ്ത് 2 (main)</label>
+<input list="nameList" id="bust2Main">
+
+<label>ബുസ്ത് 2 (പങ്കെടുക്കുന്നവർ)</label>
+<textarea id="bust2List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+
+<label>ഖസീദ 3</label>
+<input list="nameList" id="q3">
+
+<label>ഖസീദ 4</label>
+<input list="nameList" id="q4">
+
+<label>ഫവാത്തിഹ് & ദുആ</label>
+<input list="nameList" id="dua">
+</div>
+
+<div class="section">
+<h3>മുൻഷിദീങ്ങൾ</h3>
+<textarea id="munshideen" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+</div>
+
+<div class="section">
+<h3>നമസ്‌കാരം</h3>
+
+<label>ഇഷാ ഇമാം</label>
+<input list="nameList" id="isha">
+
+<label>തറാവീഹ് ഇമാമ്മാർ</label>
+<textarea id="tarawih" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+</div>
+
+<div class="section">
+<h3>പങ്കെടുത്തവർ</h3>
+
+<label>പുരുഷന്മാർ</label>
+<input type="number" id="men">
+
+<label>സയ്യിദാത്ത്</label>
+<input type="number" id="sayyidath">
+
+<label>കുട്ടികൾ</label>
+<input type="number" id="children">
+</div>
+
+<button onclick="generate()">Generate Program</button>
+<button onclick="shareWhatsApp()">Send to WhatsApp</button>
+
+<pre id="output"></pre>
+
+<script>
+document.getElementById("date").valueAsDate = new Date();
+
+function v(id){ return document.getElementById(id).value.trim(); }
+function csv(id){
+  return v(id).split(/\n+/).map(s=>s.trim()).filter(Boolean).join(", ");
+}
+
+function generate(){
+  let men=+v("men")||0, say=+v("sayyidath")||0, kid=+v("children")||0;
+  let total=men+say+kid;
+
+  let o =
+`Date : ${v("date")}
+ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്
+******
+
+`;
+
+  if(v("maghrib"))
+    o+=`صلاة المغرب
+ഇമാം: ${v("maghrib")}
+
+********
+
+`;
+
+  if(v("family"))
+    o+=`الواجب العائلى
+
+നേതൃത്വം: ${v("family")}
+
+`;
+
+  if(v("surahPage")||v("ayah")){
+    o+=`ختم القرآن
+
+    പേജ് നമ്പർ : ${v("surahPage")}
+    ആയത് നമ്പർ : ${v("ayah")}
+
+ختم القصائد
+      പേജ് നമ്പർ : ${v("qPage")}
+      ബൈത് നമ്പർ : ${v("baith")}
+
+*******
+
+`;
+  }
+
+  if(v("dars")){
+    o+=`● ദർസ്
+
+${v("dars")}
+${v("darsRef") ? "അവലംബം: "+v("darsRef") : ""}
+
+********
+
+`;
+  }
+
+  if(v("mustafthih")){
+    o+=`ഹള്റ
+
+മുസ്തഫ്തിഹ് : ${v("mustafthih")}
+
+ബുസ്ത് 1 : ${v("bust1Main")} (Main)
+
+${csv("bust1List")}
+
+മദദ്: ${v("madad")}
+
+ഖസീദ 1 : ${v("q1")}
+ഖസീദ 2 : ${v("q2")}
+
+ഫർദാനി 1 : ${v("fardani")}
+
+ബുസ്ത് 2 : ${v("bust2Main")} (Main)
+
+${csv("bust2List")}
+
+Qaseeda 3 : ${v("q3")}
+Qaseeda 4 : ${v("q4")}
+
+Fawatih 2 & Dua
+${v("dua")}
+
+*******
+
+`;
+  }
+
+  if(v("munshideen"))
+    o+=`മുൻഷിദീങ്ങൾ :
+${csv("munshideen")}
+
+********
+
+`;
+
+  if(v("isha"))
+    o+=`الصلاة العشاء
+ഇമാം: ${v("isha")}
+
+`;
+
+  if(v("tarawih"))
+    o+=`الصلاة تراويح
+ഇമാം:
+${csv("tarawih")}
+
+********
+
+`;
+
+  if(men||say||kid){
+    o+=`പങ്കെടുത്തവർ
+
+പുരുഷന്മാർ  : ${men}
+സയ്യിദാത്ത്  : ${say}
+കുട്ടികൾ      : ${kid}
+
+  ആകെ=   ${total}
+`;
+  }
+
+  document.getElementById("output").textContent=o;
+}
+
+function shareWhatsApp(){
+  let t=document.getElementById("output").textContent;
+  if(!t){ alert("Please generate the program first"); return; }
+  window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
+}
+
+// Register service worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>
