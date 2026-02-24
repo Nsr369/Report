@@ -1,284 +1,319 @@
 <!DOCTYPE html>
 <html lang="ml">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>മജ്ലിസ് പ്രോഗ്രാം ജനറേറ്റർ</title>
+    <title>മജ്ലിസ് പ്രോഗ്രാം ജനറേറ്റർ</title>
 
-<!-- PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0f172a">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
 
-<style>
-body { font-family: Arial, sans-serif; margin: 20px; }
-label { display:block; margin-top:12px; font-weight:bold; }
-input, textarea { width:100%; padding:6px; margin-top:4px; }
-button { margin-top:15px; padding:10px 20px; font-size:16px; }
-pre {
-  white-space:pre-wrap;
-  background:#f7f7f7;
-  padding:15px;
-  border:1px solid #ccc;
-  margin-top:20px;
-}
-.section {
-  margin-top:20px;
-  padding-top:10px;
-  border-top:2px solid #ddd;
-}
-</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            background: #f7f7f7;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+
+        .section {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #ddd;
+        }
+    </style>
 </head>
 
 <body>
 
-<h2>പ്രോഗ്രാം വിവരങ്ങൾ</h2>
+    <h2>പ്രോഗ്രാം വിവരങ്ങൾ</h2>
 
-<label>തീയതി</label>
-<input type="date" id="date">
+    <label>തീയതി</label>
+    <input type="date" id="date">
 
-<p><b>സ്ഥലം:</b> ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്</p>
+    <p><b>സ്ഥലം:</b> ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്</p>
 
-<datalist id="nameList">
-  <option value="മുഹ്സിൻ കാഞ്ഞങ്ങാട്">
-  <option value="മുബാറക്ക് കാഞ്ഞങ്ങാട്">
-  <option value="നിസാർ കാഞ്ഞങ്ങാട്">
-  <option value="റിയാസ് കാഞ്ഞങ്ങാട്">
-  <option value="സഫ്‌വാൻ കാഞ്ഞങ്ങാട്">
-  <option value="അൻസൽ കാഞ്ഞങ്ങാട്">
-  <option value="ശാഹിദ് കാഞ്ഞങ്ങാട്">
-  <option value="അഷ്റഫ് കാഞ്ഞങ്ങാട്">
-  <option value="സത്താർ കാഞ്ഞങ്ങാട്">
-</datalist>
+    <datalist id="nameList">
+        <option value="മുഹ്സിൻ കാഞ്ഞങ്ങാട്">
+        <option value="മുബാറക്ക് കാഞ്ഞങ്ങാട്">
+        <option value="നിസാർ കാഞ്ഞങ്ങാട്">
+        <option value="റിയാസ് കാഞ്ഞങ്ങാട്">
+        <option value="സഫ്‌വാൻ കാഞ്ഞങ്ങാട്">
+        <option value="അൻസൽ കാഞ്ഞങ്ങാട്">
+        <option value="ശാഹിദ് കാഞ്ഞങ്ങാട്">
+        <option value="അഷ്റഫ് കാഞ്ഞങ്ങാട്">
+        <option value="സത്താർ കാഞ്ഞങ്ങാട്">
+    </datalist>
 
-<div class="section">
-<h3>ഇമാം / നേതൃത്വം</h3>
+    <div class="section">
+        <h3>ഇമാം / നേതൃത്വം</h3>
 
-<label>മഗ്രിബ് ഇമാം</label>
-<input list="nameList" id="maghrib">
+        <label>മഗ്രിബ് ഇമാം</label>
+        <input list="nameList" id="maghrib">
 
-<label>നേതൃത്വം</label>
-<input list="nameList" id="family">
+        <label>നേതൃത്വം</label>
+        <input list="nameList" id="family">
 
-<label>ദർസ് നടത്തുന്നവർ</label>
-<input list="nameList" id="dars">
+        <label>ദർസ് നടത്തുന്നവർ</label>
+        <input list="nameList" id="dars">
 
-<label>ദർസ് അവലംബം</label>
-<input id="darsRef">
-</div>
+        <label>ദർസ് അവലംബം</label>
+        <input id="darsRef">
+    </div>
 
-<div class="section">
-<h3>ഖുർആൻ & ഖസീദ</h3>
+    <div class="section">
+        <h3>ഖുർആൻ & ഖസീദ</h3>
 
-<label>ഖുർആൻ പേജ് നമ്പർ</label>
-<input id="surahPage">
+        <label>ഖുർആൻ പേജ് നമ്പർ</label>
+        <input id="surahPage">
 
-<label>ആയത്ത് നമ്പർ</label>
-<input id="ayah">
+        <label>ആയത്ത് നമ്പർ</label>
+        <input id="ayah">
 
-<label>ഖസീദ പേജ് നമ്പർ</label>
-<input id="qPage">
+        <label>ഖസീദ പേജ് നമ്പർ</label>
+        <input id="qPage">
 
-<label>ബൈത് നമ്പർ</label>
-<input id="baith">
-</div>
+        <label>ബൈത് നമ്പർ</label>
+        <input id="baith">
+    </div>
 
-<div class="section">
-<h3>ഹള്റ</h3>
+    <div class="section">
+        <h3>ഹള്റ</h3>
 
-<label>മുസ്തഫ്തിഹ്</label>
-<input list="nameList" id="mustafthih">
+        <label>മുസ്തഫ്തിഹ്</label>
+        <input list="nameList" id="mustafthih">
 
-<label>ബുസ്ത് 1 (main)</label>
-<input list="nameList" id="bust1Main">
+        <label>ബുസ്ത് 1 (main)</label>
+        <input list="nameList" id="bust1Main">
 
-<label>ബുസ്ത് 1 (പങ്കെടുക്കുന്നവർ)</label>
-<textarea id="bust1List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+        <label>ബുസ്ത് 1 (പങ്കെടുക്കുന്നവർ)</label>
+        <textarea id="bust1List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
 
-<label>മദദ്</label>
-<input list="nameList" id="madad">
+        <label>മദദ്</label>
+        <input list="nameList" id="madad">
 
-<label>ഖസീദ 1</label>
-<input list="nameList" id="q1">
+        <label>ഖസീദ 1</label>
+        <input list="nameList" id="q1">
 
-<label>ഖസീദ 2</label>
-<input list="nameList" id="q2">
+        <label>ഖസീദ 2</label>
+        <input list="nameList" id="q2">
 
-<label>ഫർദാനി</label>
-<input list="nameList" id="fardani">
+        <label>ഫർദാനി</label>
+        <input list="nameList" id="fardani">
 
-<label>ബുസ്ത് 2 (main)</label>
-<input list="nameList" id="bust2Main">
+        <label>ബുസ്ത് 2 (main)</label>
+        <input list="nameList" id="bust2Main">
 
-<label>ബുസ്ത് 2 (പങ്കെടുക്കുന്നവർ)</label>
-<textarea id="bust2List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+        <label>ബുസ്ത് 2 (പങ്കെടുക്കുന്നവർ)</label>
+        <textarea id="bust2List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
 
-<label>ഖസീദ 3</label>
-<input list="nameList" id="q3">
+        <label>ഖസീദ 3</label>
+        <input list="nameList" id="q3">
 
-<label>ഖസീദ 4</label>
-<input list="nameList" id="q4">
+        <label>ഖസീദ 4</label>
+        <input list="nameList" id="q4">
 
-<label>ഫവാത്തിഹ് & ദുആ</label>
-<input list="nameList" id="dua">
-</div>
+        <label>ഫവാത്തിഹ് & ദുആ</label>
+        <input list="nameList" id="dua">
+    </div>
 
-<div class="section">
-<h3>മുൻഷിദീങ്ങൾ</h3>
-<textarea id="munshideen" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
-</div>
+    <div class="section">
+        <h3>മുൻഷിദീങ്ങൾ</h3>
+        <textarea id="munshideen" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+    </div>
 
-<div class="section">
-<h3>നമസ്‌കാരം</h3>
+    <div class="section">
+        <h3>നമസ്‌കാരം</h3>
 
-<label>ഇഷാ ഇമാം</label>
-<input list="nameList" id="isha">
+        <label>ഇഷാ ഇമാം</label>
+        <input list="nameList" id="isha">
 
-<label>തറാവീഹ് ഇമാമ്മാർ</label>
-<textarea id="tarawih" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
-</div>
+        <label>തറാവീഹ് ഇമാമ്മാർ</label>
+        <textarea id="tarawih" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+    </div>
 
-<div class="section">
-<h3>● നഫഹ</h3>
-<textarea id="nafah" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
-</div>
+    <div class="section">
+        <h3>● നഫഹ</h3>
+        <textarea id="nafah" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+    </div>
 
-<div class="section">
-<h3>പുതിയ ബൈഅത്ത്</h3>
+    <div class="section">
+        <h3>പുതിയ ബൈഅത്ത്</h3>
 
-<label>പേര്</label>
-<input id="bayahName">
+        <label>പേര്</label>
+        <input id="bayahName">
 
-<label>മുർഷിദ്</label>
-<input list="nameList" id="bayahMurshid">
+        <label>മുർഷിദ്</label>
+        <input list="nameList" id="bayahMurshid">
 
-<label>സയ്യിദാത്ത് പേര് (ഐച്ഛികം)</label>
-<input id="bayahSName">
+        <label>സയ്യിദാത്ത് പേര് (ഐച്ഛികം)</label>
+        <input id="bayahSName">
 
-<label>സയ്യിദാത്ത് മുർഷിദ് (ഐച്ഛികം)</label>
-<input list="nameList" id="bayahSMurshid">
-</div>
+        <label>സയ്യിദാത്ത് മുർഷിദ് (ഐച്ഛികം)</label>
+        <input list="nameList" id="bayahSMurshid">
+    </div>
 
-<div class="section">
-<h3>പങ്കെടുത്തവർ</h3>
+    <div class="section">
+        <h3>പങ്കെടുത്തവർ</h3>
 
-<label>പുരുഷന്മാർ</label>
-<input type="number" id="men">
+        <label>പുരുഷന്മാർ</label>
+        <input type="number" id="men">
 
-<label>സയ്യിദാത്ത്</label>
-<input type="number" id="sayyidath">
+        <label>സയ്യിദാത്ത്</label>
+        <input type="number" id="sayyidath">
 
-<label>കുട്ടികൾ</label>
-<input type="number" id="children">
-</div>
+        <label>കുട്ടികൾ</label>
+        <input type="number" id="children">
+    </div>
 
-<button onclick="generate()">Generate Program</button>
-<button onclick="shareWhatsApp()">Send to WhatsApp</button>
-<button onclick="sendToDocs()">Send to Google Docs</button>
+    <button onclick="generate()">Generate Program</button>
+    <button onclick="shareWhatsApp()">Send to WhatsApp</button>
+    <button onclick="sendToDocs()">Send to Google Docs</button>
 
-<pre id="output"></pre>
+    <pre id="output"></pre>
 
-<script>
-document.getElementById("date").valueAsDate = new Date();
+    <script>
+        document.getElementById("date").valueAsDate = new Date();
 
-function v(id){ return document.getElementById(id).value.trim(); }
-function csv(id){
-  return v(id).split(/\n+/).map(s=>s.trim()).filter(Boolean).join(", ");
-}
+        function v(id) { return document.getElementById(id).value.trim(); }
+        function csv(id) {
+            return v(id).split(/\n+/).map(s => s.trim()).filter(Boolean).join(", ");
+        }
 
-function generate(){
-  let men=+v("men")||0, say=+v("sayyidath")||0, kid=+v("children")||0;
-  let total=men+say+kid;
+        function generate() {
+            let men = +v("men") || 0, say = +v("sayyidath") || 0, kid = +v("children") || 0;
+            let total = men + say + kid;
 
-  let o =
-`Date : ${v("date")}
+            let o =
+                `Date : ${v("date")}
 ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്
 ******
 
 `;
 
-  if(v("maghrib")) o+=`صلاة المغرب\nഇമാം: ${v("maghrib")}\n\n********\n\n`;
-  if(v("family")) o+=`الواجب العائلى\n\nനേതൃത്വം: ${v("family")}\n\n`;
+            if (v("maghrib")) o += `صلاة المغرب\nഇമാം: ${v("maghrib")}\n\n********\n\n`;
+            if (v("family")) o += `الواجب العائلى\n\nനേതൃത്വം: ${v("family")}\n\n`;
 
-  if(v("surahPage")||v("ayah")){
-    o+=`ختم القرآن\n\n    പേജ് നമ്പർ : ${v("surahPage")}\n    ആയത് നമ്പർ : ${v("ayah")}\n\n`;
-    o+=`ختم القصائد\n      പേജ് നമ്പർ : ${v("qPage")}\n      ബൈത് നമ്പർ : ${v("baith")}\n\n*******\n\n`;
-  }
+            if (v("surahPage") || v("ayah")) {
+                o += `ختم القرآن\n\n    പേജ് നമ്പർ : ${v("surahPage")}\n    ആയത് നമ്പർ : ${v("ayah")}\n\n`;
+                o += `ختم القصائد\n      പേജ് നമ്പർ : ${v("qPage")}\n      ബൈത് നമ്പർ : ${v("baith")}\n\n*******\n\n`;
+            }
 
-  if(v("dars")){
-    o+=`● ദർസ്\n\n${v("dars")}\n${v("darsRef")?"അവലംബം: "+v("darsRef"):""}\n\n********\n\n`;
-  }
+            if (v("dars")) {
+                o += `● ദർസ്\n\n${v("dars")}\n${v("darsRef") ? "അവലംബം: " + v("darsRef") : ""}\n\n********\n\n`;
+            }
 
-  if(v("mustafthih")){
-    o+=`ഹള്റ\n\nമുസ്തഫ്തിഹ് : ${v("mustafthih")}\n\n`;
-    o+=`ബുസ്ത് 1 : ${v("bust1Main")} (Main)\n\n${csv("bust1List")}\n\n`;
-    if(v("madad")) o+=`മദദ്: ${v("madad")}\n\n`;
-    if(v("q1")) o+=`ഖസീദ 1 : ${v("q1")}\n`;
-    if(v("q2")) o+=`ഖസീദ 2 : ${v("q2")}\n\n`;
-    if(v("fardani")) o+=`ഫർദാനി 1 : ${v("fardani")}\n\n`;
-    o+=`ബുസ്ത് 2 : ${v("bust2Main")} (Main)\n\n${csv("bust2List")}\n\n`;
-    if(v("q3")) o+=`Qaseeda 3 : ${v("q3")}\n`;
-    if(v("q4")) o+=`Qaseeda 4 : ${v("q4")}\n\n`;
-    if(v("dua")) o+=`Fawatih 2 & Dua\n${v("dua")}\n\n`;
-    o+=`*******\n\n`;
-  }
+            if (v("mustafthih")) {
+                o += `ഹള്റ\n\nമുസ്തഫ്തിഹ് : ${v("mustafthih")}\n\n`;
+                o += `ബുസ്ത് 1 : ${v("bust1Main")} (Main)\n\n${csv("bust1List")}\n\n`;
+                if (v("madad")) o += `മദദ്: ${v("madad")}\n\n`;
+                if (v("q1")) o += `ഖസീദ 1 : ${v("q1")}\n`;
+                if (v("q2")) o += `ഖസീദ 2 : ${v("q2")}\n\n`;
+                if (v("fardani")) o += `ഫർദാനി 1 : ${v("fardani")}\n\n`;
+                o += `ബുസ്ത് 2 : ${v("bust2Main")} (Main)\n\n${csv("bust2List")}\n\n`;
+                if (v("q3")) o += `Qaseeda 3 : ${v("q3")}\n`;
+                if (v("q4")) o += `Qaseeda 4 : ${v("q4")}\n\n`;
+                if (v("dua")) o += `Fawatih 2 & Dua\n${v("dua")}\n\n`;
+                o += `*******\n\n`;
+            }
 
-  if(v("munshideen")) o+=`മുൻഷിദീങ്ങൾ :\n${csv("munshideen")}\n\n********\n\n`;
+            if (v("munshideen")) o += `മുൻഷിദീങ്ങൾ :\n${csv("munshideen")}\n\n********\n\n`;
 
-  if(v("isha")) o+=`الصلاة العشاء\nഇമാം: ${v("isha")}\n\n`;
-  if(v("tarawih")) o+=`الصلاة تراويح\nഇമാം:\n${csv("tarawih")}\n\n********\n\n`;
+            if (v("isha")) o += `الصلاة العشاء\nഇമാം: ${v("isha")}\n\n`;
+            if (v("tarawih")) o += `الصلاة تراويح\nഇമാം:\n${csv("tarawih")}\n\n********\n\n`;
 
-  if(v("nafah")) o+=`● നഫഹ\n\n${csv("nafah")}\n\n********\n\n`;
+            if (v("nafah")) o += `● നഫഹ\n\n${csv("nafah")}\n\n********\n\n`;
 
-  if(v("bayahName")){
-    o+=`പുതിയ ബൈഅത്ത്\n\nപേര്: ${v("bayahName")}\nമുർഷിദ്: ${v("bayahMurshid")}\n\n`;
-    if(v("bayahSName")){
-      o+=`സയ്യിദാത്ത്\n\nപേര്: ${v("bayahSName")}\nമുർഷിദ്: ${v("bayahSMurshid")}\n\n`;
-    }
-    o+=`*******\n\n`;
-  }
+            if (v("bayahName")) {
+                o += `പുതിയ ബൈഅത്ത്\n\nപേര്: ${v("bayahName")}\nമുർഷിദ്: ${v("bayahMurshid")}\n\n`;
+                if (v("bayahSName")) {
+                    o += `സയ്യിദാത്ത്\n\nപേര്: ${v("bayahSName")}\nമുർഷിദ്: ${v("bayahSMurshid")}\n\n`;
+                }
+                o += `*******\n\n`;
+            }
 
-  if(men||say||kid){
-    o+=`പങ്കെടുത്തവർ\n\nപുരുഷന്മാർ  : ${men}\nസയ്യിദാത്ത്  : ${say}\nകുട്ടികൾ      : ${kid}\n\n  ആകെ=   ${total}\n`;
-  }
+            if (men || say || kid) {
+                o += `പങ്കെടുത്തവർ\n\nപുരുഷന്മാർ  : ${men}\nസയ്യിദാത്ത്  : ${say}\nകുട്ടികൾ      : ${kid}\n\n  ആകെ=   ${total}\n`;
+            }
 
-  document.getElementById("output").textContent=o;
-}
+            document.getElementById("output").textContent = o;
+        }
 
-function shareWhatsApp(){
-  const t=document.getElementById("output").textContent;
-  if(!t){ alert("Please generate the program first"); return; }
-  window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
-}
+        function shareWhatsApp() {
+            const t = document.getElementById("output").textContent;
+            if (!t) { alert("Please generate the program first"); return; }
+            window.open("https://wa.me/?text=" + encodeURIComponent(t), "_blank");
+        }
 
-function doPost(e) {
-  const DOC_ID = "https://script.google.com/macros/s/AKfycbz5N06gFnwIyEtx8-Bx-mw9dCqWUncLelBAj5kjIYittIrGnbO2ReCizbwUwhKK6aBLQw/exec"; // ← REQUIRED
+        async function sendToDocs() {
+            const t = document.getElementById("output").textContent;
+            if (!t) {
+                alert("Please generate the program first");
+                return;
+            }
 
-  try {
-    const doc = DocumentApp.openById(DOC_ID);
-    const body = doc.getBody();
+            // This is the URL of your deployed Google Apps Script Web App
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwqadY-LIsI7PhWxN6JleXwPcWGiLApeM5LFCgseKPmUBODd4jxfw2GkPW1mDx_-b-6tg/exec";
 
-    const text = e.parameter.text || "❗ No text received";
+            const btn = document.querySelector('button[onclick="sendToDocs()"]');
+            const originalText = btn.textContent;
+            btn.textContent = "Sending...";
+            btn.disabled = true;
 
-    body.appendParagraph("————————————");
-    body.appendParagraph(text);
+            try {
+                // Using mode: 'no-cors' prevents CORS preflight issues when sending a simple form post to Apps Script.
+                await fetch(WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: "text=" + encodeURIComponent(t)
+                });
 
-    return ContentService
-      .createTextOutput("OK")
-      .setMimeType(ContentService.MimeType.TEXT);
+                alert("Successfully sent to Google Docs!");
+            } catch (err) {
+                alert("Error sending to Docs: " + err.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
 
-  } catch (err) {
-    return ContentService
-      .createTextOutput("ERROR: " + err.message)
-      .setMimeType(ContentService.MimeType.TEXT);
-  }
-}
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js");
+        }
+    </script>
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
 
-  
 </body>
+
 </html>
