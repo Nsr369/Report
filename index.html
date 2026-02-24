@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Report</title>
+<title>മജ്ലിസ് പ്രോഗ്രാം ജനറേറ്റർ</title>
 
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f172a">
 
@@ -129,6 +128,27 @@ pre {
 
 <label>ഫവാത്തിഹ് & ദുആ</label>
 <input list="nameList" id="dua">
+</div>
+
+<div class="section">
+<h3>● നഫഹ</h3>
+<textarea id="nafah" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+</div>
+
+<div class="section">
+<h3>പുതിയ ബൈഅത്ത്</h3>
+
+<label>പേര്</label>
+<input id="bayahName">
+
+<label>മുർഷിദ്</label>
+<input list="nameList" id="bayahMurshid">
+
+<label>സയ്യിദാത്ത് പേര് (ഐച്ഛികം)</label>
+<input id="bayahSName">
+
+<label>സയ്യിദാത്ത് മുർഷിദ് (ഐച്ഛികം)</label>
+<input list="nameList" id="bayahSMurshid">
 </div>
 
 <div class="section">
@@ -255,21 +275,53 @@ ${v("dua")}
 `;
   }
 
-  if(v("munshideen"))
+  if(v("nafah")){
+    o+=`● നഫഹ
+
+${csv("nafah")}
+
+********
+
+`;
+  }
+
+  if(v("bayahName")){
+    o+=`പുതിയ ബൈഅത്ത്
+
+പേര്: ${v("bayahName")}
+മുർഷിദ്: ${v("bayahMurshid")}
+
+`;
+    if(v("bayahSName")){
+      o+=`സയ്യിദാത്ത്
+
+പേര്: ${v("bayahSName")}
+മുർഷിദ്: ${v("bayahSMurshid")}
+
+`;
+    }
+    o+=`*******
+
+`;
+  }
+
+  if(v("munshideen")){
     o+=`മുൻഷിദീങ്ങൾ :
 ${csv("munshideen")}
 
 ********
 
 `;
+  }
 
-  if(v("isha"))
+  if(v("isha")){
     o+=`الصلاة العشاء
 ഇമാം: ${v("isha")}
 
 `;
+  }
 
-  if(v("tarawih"))
+  if(v("tarawih")){
     o+=`الصلاة تراويح
 ഇമാം:
 ${csv("tarawih")}
@@ -277,6 +329,7 @@ ${csv("tarawih")}
 ********
 
 `;
+  }
 
   if(men||say||kid){
     o+=`പങ്കെടുത്തവർ
@@ -298,7 +351,6 @@ function shareWhatsApp(){
   window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
 }
 
-// Register service worker
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
