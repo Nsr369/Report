@@ -6,22 +6,15 @@
 
 <title>മജ്ലിസ് പ്രോഗ്രാം ജനറേറ്റർ</title>
 
+<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f172a">
 
 <style>
 body { font-family: Arial, sans-serif; margin: 20px; }
 label { display:block; margin-top:12px; font-weight:bold; }
-input, textarea {
-  width:100%;
-  padding:6px;
-  margin-top:4px;
-}
-button {
-  margin-top:15px;
-  padding:10px 20px;
-  font-size:16px;
-}
+input, textarea { width:100%; padding:6px; margin-top:4px; }
+button { margin-top:15px; padding:10px 20px; font-size:16px; }
 pre {
   white-space:pre-wrap;
   background:#f7f7f7;
@@ -131,6 +124,21 @@ pre {
 </div>
 
 <div class="section">
+<h3>മുൻഷിദീങ്ങൾ</h3>
+<textarea id="munshideen" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+</div>
+
+<div class="section">
+<h3>നമസ്‌കാരം</h3>
+
+<label>ഇഷാ ഇമാം</label>
+<input list="nameList" id="isha">
+
+<label>തറാവീഹ് ഇമാമ്മാർ</label>
+<textarea id="tarawih" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+</div>
+
+<div class="section">
 <h3>● നഫഹ</h3>
 <textarea id="nafah" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
 </div>
@@ -152,21 +160,6 @@ pre {
 </div>
 
 <div class="section">
-<h3>മുൻഷിദീങ്ങൾ</h3>
-<textarea id="munshideen" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
-</div>
-
-<div class="section">
-<h3>നമസ്‌കാരം</h3>
-
-<label>ഇഷാ ഇമാം</label>
-<input list="nameList" id="isha">
-
-<label>തറാവീഹ് ഇമാമ്മാർ</label>
-<textarea id="tarawih" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
-</div>
-
-<div class="section">
 <h3>പങ്കെടുത്തവർ</h3>
 
 <label>പുരുഷന്മാർ</label>
@@ -181,6 +174,7 @@ pre {
 
 <button onclick="generate()">Generate Program</button>
 <button onclick="shareWhatsApp()">Send to WhatsApp</button>
+<button onclick="sendToDocs()">Send to Google Docs</button>
 
 <pre id="output"></pre>
 
@@ -203,152 +197,71 @@ function generate(){
 
 `;
 
-  if(v("maghrib"))
-    o+=`صلاة المغرب
-ഇമാം: ${v("maghrib")}
-
-********
-
-`;
-
-  if(v("family"))
-    o+=`الواجب العائلى
-
-നേതൃത്വം: ${v("family")}
-
-`;
+  if(v("maghrib")) o+=`صلاة المغرب\nഇമാം: ${v("maghrib")}\n\n********\n\n`;
+  if(v("family")) o+=`الواجب العائلى\n\nനേതൃത്വം: ${v("family")}\n\n`;
 
   if(v("surahPage")||v("ayah")){
-    o+=`ختم القرآن
-
-    പേജ് നമ്പർ : ${v("surahPage")}
-    ആയത് നമ്പർ : ${v("ayah")}
-
-ختم القصائد
-      പേജ് നമ്പർ : ${v("qPage")}
-      ബൈത് നമ്പർ : ${v("baith")}
-
-*******
-
-`;
+    o+=`ختم القرآن\n\n    പേജ് നമ്പർ : ${v("surahPage")}\n    ആയത് നമ്പർ : ${v("ayah")}\n\n`;
+    o+=`ختم القصائد\n      പേജ് നമ്പർ : ${v("qPage")}\n      ബൈത് നമ്പർ : ${v("baith")}\n\n*******\n\n`;
   }
 
   if(v("dars")){
-    o+=`● ദർസ്
-
-${v("dars")}
-${v("darsRef") ? "അവലംബം: "+v("darsRef") : ""}
-
-********
-
-`;
+    o+=`● ദർസ്\n\n${v("dars")}\n${v("darsRef")?"അവലംബം: "+v("darsRef"):""}\n\n********\n\n`;
   }
 
   if(v("mustafthih")){
-    o+=`ഹള്റ
-
-മുസ്തഫ്തിഹ് : ${v("mustafthih")}
-
-ബുസ്ത് 1 : ${v("bust1Main")} (Main)
-
-${csv("bust1List")}
-
-മദദ്: ${v("madad")}
-
-ഖസീദ 1 : ${v("q1")}
-ഖസീദ 2 : ${v("q2")}
-
-ഫർദാനി 1 : ${v("fardani")}
-
-ബുസ്ത് 2 : ${v("bust2Main")} (Main)
-
-${csv("bust2List")}
-
-Qaseeda 3 : ${v("q3")}
-Qaseeda 4 : ${v("q4")}
-
-Fawatih 2 & Dua
-${v("dua")}
-
-*******
-
-`;
+    o+=`ഹള്റ\n\nമുസ്തഫ്തിഹ് : ${v("mustafthih")}\n\n`;
+    o+=`ബുസ്ത് 1 : ${v("bust1Main")} (Main)\n\n${csv("bust1List")}\n\n`;
+    if(v("madad")) o+=`മദദ്: ${v("madad")}\n\n`;
+    if(v("q1")) o+=`ഖസീദ 1 : ${v("q1")}\n`;
+    if(v("q2")) o+=`ഖസീദ 2 : ${v("q2")}\n\n`;
+    if(v("fardani")) o+=`ഫർദാനി 1 : ${v("fardani")}\n\n`;
+    o+=`ബുസ്ത് 2 : ${v("bust2Main")} (Main)\n\n${csv("bust2List")}\n\n`;
+    if(v("q3")) o+=`Qaseeda 3 : ${v("q3")}\n`;
+    if(v("q4")) o+=`Qaseeda 4 : ${v("q4")}\n\n`;
+    if(v("dua")) o+=`Fawatih 2 & Dua\n${v("dua")}\n\n`;
+    o+=`*******\n\n`;
   }
 
-  if(v("nafah")){
-    o+=`● നഫഹ
+  if(v("munshideen")) o+=`മുൻഷിദീങ്ങൾ :\n${csv("munshideen")}\n\n********\n\n`;
 
-${csv("nafah")}
+  if(v("isha")) o+=`الصلاة العشاء\nഇമാം: ${v("isha")}\n\n`;
+  if(v("tarawih")) o+=`الصلاة تراويح\nഇമാം:\n${csv("tarawih")}\n\n********\n\n`;
 
-********
-
-`;
-  }
+  if(v("nafah")) o+=`● നഫഹ\n\n${csv("nafah")}\n\n********\n\n`;
 
   if(v("bayahName")){
-    o+=`പുതിയ ബൈഅത്ത്
-
-പേര്: ${v("bayahName")}
-മുർഷിദ്: ${v("bayahMurshid")}
-
-`;
+    o+=`പുതിയ ബൈഅത്ത്\n\nപേര്: ${v("bayahName")}\nമുർഷിദ്: ${v("bayahMurshid")}\n\n`;
     if(v("bayahSName")){
-      o+=`സയ്യിദാത്ത്
-
-പേര്: ${v("bayahSName")}
-മുർഷിദ്: ${v("bayahSMurshid")}
-
-`;
+      o+=`സയ്യിദാത്ത്\n\nപേര്: ${v("bayahSName")}\nമുർഷിദ്: ${v("bayahSMurshid")}\n\n`;
     }
-    o+=`*******
-
-`;
-  }
-
-  if(v("munshideen")){
-    o+=`മുൻഷിദീങ്ങൾ :
-${csv("munshideen")}
-
-********
-
-`;
-  }
-
-  if(v("isha")){
-    o+=`الصلاة العشاء
-ഇമാം: ${v("isha")}
-
-`;
-  }
-
-  if(v("tarawih")){
-    o+=`الصلاة تراويح
-ഇമാം:
-${csv("tarawih")}
-
-********
-
-`;
+    o+=`*******\n\n`;
   }
 
   if(men||say||kid){
-    o+=`പങ്കെടുത്തവർ
-
-പുരുഷന്മാർ  : ${men}
-സയ്യിദാത്ത്  : ${say}
-കുട്ടികൾ      : ${kid}
-
-  ആകെ=   ${total}
-`;
+    o+=`പങ്കെടുത്തവർ\n\nപുരുഷന്മാർ  : ${men}\nസയ്യിദാത്ത്  : ${say}\nകുട്ടികൾ      : ${kid}\n\n  ആകെ=   ${total}\n`;
   }
 
   document.getElementById("output").textContent=o;
 }
 
 function shareWhatsApp(){
-  let t=document.getElementById("output").textContent;
+  const t=document.getElementById("output").textContent;
   if(!t){ alert("Please generate the program first"); return; }
   window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
+}
+
+function sendToDocs(){
+  const t=document.getElementById("output").textContent;
+  if(!t){ alert("Please generate the program first"); return; }
+
+  fetch("https://script.google.com/macros/s/AKfycbz5N06gFnwIyEtx8-Bx-mw9dCqWUncLelBAj5kjIYittIrGnbO2ReCizbwUwhKK6aBLQw/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "text=" + encodeURIComponent(t)
+  })
+  .then(()=>alert("Sent to Google Docs successfully ✅"))
+  .catch(()=>alert("Failed to send ❌"));
 }
 
 if ("serviceWorker" in navigator) {
