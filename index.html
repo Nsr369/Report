@@ -251,17 +251,27 @@ function shareWhatsApp(){
   window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
 }
 
-function sendToDocs(){
-  const t=document.getElementById("output").textContent;
-  if(!t){ alert("Please generate the program first"); return; }
+function doPost(e) {
+  const DOC_ID = "PASTE_YOUR_DOC_ID_HERE"; // ← REQUIRED
 
-  fetch("https://script.google.com/macros/s/AKfycbz5N06gFnwIyEtx8-Bx-mw9dCqWUncLelBAj5kjIYittIrGnbO2ReCizbwUwhKK6aBLQw/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: "text=" + encodeURIComponent(t)
-  })
-  .then(()=>alert("Sent to Google Docs successfully ✅"))
-  .catch(()=>alert("Failed to send ❌"));
+  try {
+    const doc = DocumentApp.openById(DOC_ID);
+    const body = doc.getBody();
+
+    const text = e.parameter.text || "❗ No text received";
+
+    body.appendParagraph("————————————");
+    body.appendParagraph(text);
+
+    return ContentService
+      .createTextOutput("OK")
+      .setMimeType(ContentService.MimeType.TEXT);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput("ERROR: " + err.message)
+      .setMimeType(ContentService.MimeType.TEXT);
+  }
 }
 
 if ("serviceWorker" in navigator) {
