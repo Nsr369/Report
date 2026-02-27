@@ -16,17 +16,27 @@
 
     <style>
         :root {
-            --primary: #3f51b5;
-            --primary-dark: #303f9f;
-            --bg-color: #f5f5f6;
+            /* Soft Islamic Minimal Palette */
+            --primary: #355e3b;
+            /* Sage/Forest Green */
+            --primary-light: #e8f4ec;
+            /* Soft Mint Hover */
+            --primary-dark: #2a4b2f;
+            --bg-color: #faf8f5;
+            /* Warm Cream */
             --surface-color: #ffffff;
-            --text-primary: rgba(0, 0, 0, 0.87);
-            --text-secondary: rgba(0, 0, 0, 0.6);
-            --border-color: rgba(0, 0, 0, 0.12);
-            --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-            --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            --radius-md: 8px;
-            --radius-sm: 4px;
+            --text-primary: #2d3748;
+            /* Dark Charcoal (softer than black) */
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --shadow-1: 0 4px 12px rgba(46, 92, 70, 0.04);
+            /* Soft, diffused shadow */
+            --shadow-2: 0 8px 24px rgba(46, 92, 70, 0.08);
+            /* Elevated hover shadow */
+            --radius-md: 16px;
+            /* Increased for softer card corners */
+            --radius-sm: 8px;
+            /* Modern input corners */
         }
 
         * {
@@ -38,9 +48,10 @@
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23355e3b' fill-opacity='0.15'%3E%3Cpath d='M29.99 38l1.42 1.42-7.07 7.07-1.42-1.41L29.99 38zM38 29.99l1.42 1.42-7.07 7.07-1.41-1.42L38 29.99zm-8.01-8l1.42-1.41 7.07 7.07-1.42 1.42-7.07-7.08zm-8 8l1.41-1.42 7.08 7.07-1.42 1.42-7.07-7.07zm14.85 4.95l1.42 1.41-3.54 3.54-1.41-1.42 3.53-3.53zM40.92 20.9l1.42-1.41-3.54-3.54-1.41 1.42 3.53 3.53zM19.08 20.9l-1.42-1.41 3.54-3.54 1.41 1.42-3.53 3.53zm-3.31 16.03l-1.42 1.41 3.54 3.54 1.41-1.42-3.53-3.53zm26.65 0l1.42 1.41-3.54 3.54-1.41-1.42 3.53-3.53zM8.49 20.9l-1.42-1.41 3.54-3.54 1.41 1.42-3.53 3.53zM25.04 7.07l1.42 1.42-7.07 7.07-1.42-1.41 7.07-7.08zm8 0l-1.42 1.42 7.08 7.07 1.42-1.41-7.08-7.08zm4.95 14.85l1.41 1.42-3.54 3.54-1.42-1.41 3.55-3.55zm-16.03-3.31l1.41-1.42-3.54-3.54-1.42 1.41 3.55 3.55zm0 26.65l1.41 1.42-3.54 3.54-1.42-1.41 3.55-3.55zm16.03 0l1.41-1.42-3.54-3.54-1.42 1.41 3.55 3.55zm1.5-24.81l1.41 1.41-2.12 2.12-1.41-1.41 2.12-2.12zm11.31-7.07l1.41 1.41-2.12 2.12-1.41-1.41 2.12-2.12zm-28.3 11.3l-1.41-1.41 2.12-2.12 1.41 1.41-2.12 2.12zm0-11.3l-1.41-1.41 2.12-2.12 1.41 1.41-2.12 2.12zm19.8-9.9l1.41 1.41-2.12 2.12-1.41-1.41 2.12-2.12zm-11.3 0l1.41 1.41-2.12 2.12-1.41-1.41 2.12-2.12zM29.99 8.5v2h-2v-2h2zm10.6 4.41l1.42 1.41-1.42 1.41-1.41-1.41 1.41-1.41zM29.99 51.5v-2h-2v2h2zm-10.6-4.41l-1.42-1.41 1.42-1.41 1.41 1.41-1.41 1.41zM10.19 32.1h-2v-2h2v2zm40.42 0h2v-2h-2v2zM21.5 19.41l-1.41 1.41 1.41 1.42 1.41-1.42-1.41-1.41zM28.5 28.5h4v4h-4v-4zm-8-8h4v4h-4v-4zm16 16h4v4h-4v-4zm0-16h4v4h-4v-4zm-16 16h4v4h-4v-4zm4-24h4v4h-4v-4zm8 0h4v4h-4v-4zm-12 12h4v4h-4v-4zm16 0h4v4h-4v-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: var(--text-primary);
-            line-height: 1.5;
-            padding: 20px;
+            line-height: 1.6;
+            padding: 24px 20px;
         }
 
         .container {
@@ -49,19 +60,20 @@
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 500;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             color: var(--primary);
             text-align: center;
+            letter-spacing: 0.5px;
         }
 
         h3 {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 500;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             color: var(--text-primary);
-            border-bottom: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary-light);
             padding-bottom: 8px;
             display: inline-block;
         }
@@ -69,31 +81,34 @@
         h4 {
             font-size: 16px;
             font-weight: 500;
-            margin-top: 16px;
-            margin-bottom: 8px;
+            margin-top: 20px;
+            margin-bottom: 10px;
             color: var(--text-secondary);
         }
 
         .section {
             background: var(--surface-color);
-            padding: 24px;
+            padding: 28px;
             margin-bottom: 24px;
             border-radius: var(--radius-md);
+            border: 1px solid rgba(46, 92, 70, 0.05);
+            /* Very subtle borderline */
             box-shadow: var(--shadow-1);
-            transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1);
+            transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1), transform 0.3s ease;
         }
 
         .section:hover {
             box-shadow: var(--shadow-2);
+            transform: translateY(-2px);
         }
 
         label {
             display: block;
-            margin-top: 16px;
+            margin-top: 18px;
             font-size: 14px;
             font-weight: 500;
             color: var(--text-secondary);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         input[type="text"],
@@ -102,21 +117,23 @@
         textarea,
         input:not([type="radio"]):not([type="checkbox"]) {
             width: 100%;
-            padding: 12px;
-            font-size: 16px;
+            padding: 13px 16px;
+            font-size: 15px;
             font-family: inherit;
+            color: var(--text-primary);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
-            background-color: #fafafa;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: #fcfbf9;
+            /* Slightly tinted input field */
+            transition: all 0.2s ease;
             outline: none;
         }
 
         input:focus,
         textarea:focus {
             border-color: var(--primary);
-            box-shadow: inset 0 0 0 1px var(--primary);
-            background-color: #fff;
+            box-shadow: 0 0 0 3px var(--primary-light);
+            background-color: var(--surface-color);
         }
 
         textarea {
@@ -124,13 +141,14 @@
             min-height: 80px;
         }
 
-        /* Material Buttons */
+        /* Material Buttons -> Flat Minimal Pill Buttons */
         .btn-group {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-top: 24px;
+            margin-top: 32px;
             margin-bottom: 30px;
+            justify-content: center;
         }
 
         button {
@@ -138,15 +156,16 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 28px;
             font-size: 14px;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: var(--radius-sm);
+            letter-spacing: 0.3px;
+            border-radius: 50px;
+            /* Pill shape */
             cursor: pointer;
-            box-shadow: var(--shadow-1);
-            transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+            box-shadow: 0 2px 6px rgba(46, 92, 70, 0.15);
+            /* Soft button shadow */
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -154,77 +173,91 @@
 
         button:hover {
             background-color: var(--primary-dark);
-            box-shadow: var(--shadow-2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(46, 92, 70, 0.2);
         }
 
         button:active {
-            box-shadow: var(--shadow-1);
             transform: translateY(1px);
+            box-shadow: 0 1px 3px rgba(46, 92, 70, 0.1);
         }
 
         button:disabled {
-            background-color: #bdbdbd;
+            background-color: #e2e8f0;
+            color: #a0aec0;
             box-shadow: none;
             cursor: not-allowed;
-            color: rgba(0, 0, 0, 0.26);
+            transform: none;
         }
 
         /* Add more button style overrides */
-        button[onclick^="addBayah"] {
-            background-color: transparent;
+        button[onclick^="addBayah"],
+        button[onclick^="addDynamicInput"] {
+            background-color: var(--primary-light);
             color: var(--primary);
             box-shadow: none;
-            border: 1px solid var(--primary);
-            margin-top: 8px;
+            font-weight: 500;
+            padding: 8px 16px;
+            font-size: 13px;
+            margin-top: 10px;
         }
 
-        button[onclick^="addBayah"]:hover {
-            background-color: rgba(63, 81, 181, 0.08);
+        button[onclick^="addBayah"]:hover,
+        button[onclick^="addDynamicInput"]:hover {
+            background-color: #d1ebd9;
             box-shadow: none;
         }
 
         button[onclick*="remove"] {
-            background-color: #f44336;
-            padding: 6px 12px;
+            background-color: #fce8e8;
+            color: #d32f2f;
+            padding: 6px 14px;
             font-size: 12px;
-            border-radius: 4px;
+            border-radius: 50px;
+            font-weight: 500;
             box-shadow: none;
         }
 
         button[onclick*="remove"]:hover {
-            background-color: #d32f2f;
+            background-color: #fad1d1;
+            transform: none;
         }
 
         /* Radio Buttons */
         input[type="radio"] {
             accent-color: var(--primary);
-            width: 16px;
-            height: 16px;
-            margin-right: 6px;
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
             vertical-align: text-bottom;
+            cursor: pointer;
         }
 
         .radio-group label {
             display: inline-flex;
             align-items: center;
             margin-top: 0;
-            margin-right: 20px;
+            margin-right: 24px;
             font-size: 15px;
             cursor: pointer;
             color: var(--text-primary);
         }
 
+        /* Preview Document Box */
         pre {
             white-space: pre-wrap;
-            background: #282c34;
-            color: #abb2bf;
-            padding: 20px;
-            border-radius: var(--radius-md);
+            background: #ffffff;
+            color: var(--text-primary);
+            padding: 24px 30px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary);
+            /* Document accent line */
             font-family: inherit;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-top: 20px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-top: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
             overflow-x: auto;
         }
 
@@ -235,13 +268,17 @@
         }
 
         .bayah-entry {
-            background: #fff !important;
+            background: #ffffff !important;
             border: 1px solid var(--border-color) !important;
-            border-radius: var(--radius-sm);
-            padding: 16px !important;
+            border-radius: var(--radius-md);
+            padding: 18px !important;
             margin-bottom: 16px !important;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            box-shadow: none;
             position: relative;
+        }
+
+        .schedule-mode .hide-on-schedule {
+            display: none !important;
         }
     </style>
 </head>
@@ -250,6 +287,13 @@
 
     <div class="container">
         <h2>Report</h2>
+
+        <div class="radio-group" style="margin-bottom: 20px; text-align: center;">
+            <label><input type="radio" name="modeType" value="report" checked
+                    onchange="document.body.classList.remove('schedule-mode')"> Report Mode</label>
+            <label><input type="radio" name="modeType" value="schedule"
+                    onchange="document.body.classList.add('schedule-mode')"> Schedule Mode</label>
+        </div>
 
         <label>തീയതി</label>
         <input type="date" id="date">
@@ -280,11 +324,13 @@
             <label>ദർസ് നടത്തുന്നവർ</label>
             <input list="nameList" id="dars">
 
-            <label>ദർസ് അവലംബം</label>
-            <input id="darsRef">
+            <div class="hide-on-schedule">
+                <label>ദർസ് അവലംബം</label>
+                <input id="darsRef">
+            </div>
         </div>
 
-        <div class="section">
+        <div class="section hide-on-schedule">
             <h3>ഖുർആൻ & ഖസീദ</h3>
 
             <label>ഖുർആൻ പേജ് നമ്പർ</label>
@@ -315,6 +361,9 @@
                 <label><input type="radio" name="hadraType" value="short"> Short Hadra</label>
             </div>
 
+            <label>മസ്ഊലുൽഹള്റ</label>
+            <input list="nameList" id="masool">
+
             <label>മുസ്തഫ്തിഹ്</label>
             <input list="nameList" id="mustafthih">
 
@@ -322,7 +371,15 @@
             <input list="nameList" id="bust1Main">
 
             <label>ബുസ്ത് 1 (പങ്കെടുക്കുന്നവർ)</label>
-            <textarea id="bust1List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+            <div id="bust1ListContainer">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input list="nameList" placeholder="പേര്">
+                    <button type="button" onclick="this.parentElement.remove()">X</button>
+                </div>
+            </div>
+            <button type="button" onclick="addDynamicInput('bust1ListContainer')"
+                style="padding: 5px 10px; font-size: 14px; margin-bottom: 15px; background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">+
+                Add More</button>
 
             <div id="madadSection">
                 <label>മദദ്</label>
@@ -342,7 +399,15 @@
             <input list="nameList" id="bust2Main">
 
             <label>ബുസ്ത് 2 (പങ്കെടുക്കുന്നവർ)</label>
-            <textarea id="bust2List" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+            <div id="bust2ListContainer">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input list="nameList" placeholder="പേര്">
+                    <button type="button" onclick="this.parentElement.remove()">X</button>
+                </div>
+            </div>
+            <button type="button" onclick="addDynamicInput('bust2ListContainer')"
+                style="padding: 5px 10px; font-size: 14px; margin-bottom: 15px; background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">+
+                Add More</button>
 
             <label>ഖസീദ 3</label>
             <input list="nameList" id="q3">
@@ -356,7 +421,15 @@
 
         <div class="section">
             <h3>മുൻഷിദീങ്ങൾ</h3>
-            <textarea id="munshideen" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+            <div id="munshideenContainer">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input list="nameList" placeholder="പേര്">
+                    <button type="button" onclick="this.parentElement.remove()">X</button>
+                </div>
+            </div>
+            <button type="button" onclick="addDynamicInput('munshideenContainer')"
+                style="padding: 5px 10px; font-size: 14px; margin-bottom: 15px; background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">+
+                Add More</button>
         </div>
 
         <div class="section">
@@ -366,20 +439,36 @@
             <input list="nameList" id="isha">
 
             <label>തറാവീഹ് ഇമാമ്മാർ</label>
-            <textarea id="tarawih" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+            <div id="tarawihContainer">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input list="nameList" placeholder="പേര്">
+                    <button type="button" onclick="this.parentElement.remove()">X</button>
+                </div>
+            </div>
+            <button type="button" onclick="addDynamicInput('tarawihContainer')"
+                style="padding: 5px 10px; font-size: 14px; margin-bottom: 15px; background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">+
+                Add More</button>
         </div>
 
-        <div class="section">
+        <div class="section hide-on-schedule">
             <h3>പങ്കെടുത്ത മജ്ലിസുൽ ഉമന അംഗങ്ങൾ</h3>
             <textarea id="umana" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
         </div>
 
-        <div class="section">
-            <h3>● നഫഹ</h3>
-            <textarea id="nafah" placeholder="ഓരോ പേരും ഓരോ വരിയിൽ"></textarea>
+        <div class="section hide-on-schedule">
+            <h3>നഫഹ</h3>
+            <div id="nafahContainer">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input list="nameList" placeholder="പേര്">
+                    <button type="button" onclick="this.parentElement.remove()">X</button>
+                </div>
+            </div>
+            <button type="button" onclick="addDynamicInput('nafahContainer')"
+                style="padding: 5px 10px; font-size: 14px; margin-bottom: 15px; background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">+
+                Add More</button>
         </div>
 
-        <div class="section">
+        <div class="section hide-on-schedule">
             <h3>പുതിയ ബൈഅത്ത്</h3>
 
             <h4>റിജാൽ</h4>
@@ -411,7 +500,7 @@
                 style="padding: 5px 10px; font-size: 14px; margin-top: 5px;">+ Add More (സയ്യിദാത്ത്)</button>
         </div>
 
-        <div class="section">
+        <div class="section hide-on-schedule">
             <h3>പങ്കെടുത്തവർ</h3>
 
             <label>പുരുഷന്മാർ</label>
@@ -424,7 +513,7 @@
             <input type="number" id="children">
         </div>
 
-        <div class="section">
+        <div class="section hide-on-schedule">
             <h3>റിപ്പോർട്ട്</h3>
 
             <label>Report prepared by</label>
@@ -437,7 +526,8 @@
         <div class="btn-group">
             <button onclick="generate()">Generate Program</button>
             <button onclick="shareWhatsApp()" style="background-color: #25d366; color: white;">Send to WhatsApp</button>
-            <button onclick="sendToDocs()" style="background-color: #4285f4; color: white;">Send to Google Docs</button>
+            <button class="hide-on-schedule" onclick="sendToDocs()"
+                style="background-color: #4285f4; color: white;">Send to Google Docs</button>
         </div>
 
         <pre id="output"></pre>
@@ -448,10 +538,31 @@
 
         function v(id) {
             const el = document.getElementById(id);
-            return el ? el.value.trim() : "";
+            if (el) return el.value.trim();
+
+            // Fallback for dynamic input list containers
+            const container = document.getElementById(id + "Container");
+            if (container) {
+                return Array.from(container.querySelectorAll("input"))
+                    .map(inp => inp.value.trim())
+                    .filter(Boolean)
+                    .join("\n");
+            }
+            return "";
         }
         function csv(id) {
             return v(id).split(/\n+/).map(s => s.trim()).filter(Boolean).join(", ");
+        }
+
+        function addDynamicInput(containerId, placeholderText = "പേര്") {
+            const container = document.getElementById(containerId);
+            const div = document.createElement("div");
+            div.style.cssText = "display: flex; gap: 8px; margin-bottom: 8px;";
+            div.innerHTML = `
+                <input list="nameList" placeholder="${placeholderText}">
+                <button type="button" onclick="this.parentElement.remove()">X</button>
+            `;
+            container.appendChild(div);
         }
 
         function addBayahEntry(containerId, isSayyidath = false) {
@@ -490,145 +601,181 @@
         });
 
         function generate() {
+            const isSchedule = document.querySelector('input[name="modeType"]:checked').value === 'schedule';
+
             let men = +v("men") || 0, say = +v("sayyidath") || 0, kid = +v("children") || 0;
-            let total = men + say + kid;
+            const sep = '\u{2501}'.repeat(14);
 
-            let o =
-                `Date : ${v("date")}
-ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്
-******
+            let rawDate = v("date");
+            let formattedDate = rawDate;
+            if (rawDate) {
+                // Assuming date comes from input type="date" as YYYY-MM-DD
+                let parts = rawDate.split("-");
+                if (parts.length === 3) {
+                    formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                }
+            }
 
-`;
+            let o = "";
+            if (isSchedule) {
+                o = `*${formattedDate} ഹള്റ ഷെഡ്യൂൾ*\n*ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്*\n${sep}\n`;
+            } else {
+                o = `*Date : ${rawDate}*\n*ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്*\n${sep}\n`;
+            }
 
-            if (v("maghrib")) o += `صلاة المغرب\nഇമാം: ${v("maghrib")}\n\n********\n\n`;
-            if (v("family")) o += `الواجب العائلى\n\nനേതൃത്വം: ${v("family")}\n\n`;
+            if (v("maghrib")) o += `*صلاة المغرب*\n*ഇമാം* : ${v("maghrib")}\n${sep}\n`;
 
-            if (v("surahPage") || v("ayah")) {
-                o += `ختم القرآن\n\n    പേജ് നമ്പർ : ${v("surahPage")}\n    ആയത് നമ്പർ : ${v("ayah")}\n\n`;
-                o += `ختم القصائد\n      പേജ് നമ്പർ : ${v("qPage")}\n      ബൈത് നമ്പർ : ${v("baith")}\n\n*******\n\n`;
+            if (v("family")) o += `*الواجب العائلى*\n*നേതൃത്വം* : ${v("family")}\n\n`;
+
+            if (!isSchedule && (v("surahPage") || v("ayah"))) {
+                o += `*ختم القرآن*\n*പേജ് നമ്പർ* : ${v("surahPage")}  \n*ആയത് നമ്പർ* : ${v("ayah")}\n\n`;
+                o += `*ختم القصائد*\n*പേജ് നമ്പർ* : ${v("qPage")}  \n*ബൈത് നമ്പർ* : ${v("baith")}\n${sep}\n`;
             }
 
             if (v("dars")) {
-                o += `● ദർസ്\n\n${v("dars")}\n${v("darsRef") ? "അവലംബം: " + v("darsRef") : ""}\n\n********\n\n`;
+                o += `*ദർസ്*\n${v("dars")}  \n`;
+                if (!isSchedule && v("darsRef")) {
+                    o += `*അവലംബം* : ${v("darsRef")}\n`;
+                }
+                o += `${sep}\n`;
             }
 
             if (v("muraqaba")) {
-                o += `മുറാഖബ\nനേതൃത്വം: ${v("muraqaba")}\n\n********\n\n`;
+                o += `*മുറാഖബ*\n*നേതൃത്വം* : ${v("muraqaba")}\n${sep}\n`;
             }
 
-            if (v("mustafthih")) {
+            if (v("masool") || v("mustafthih")) {
                 let hadraType = document.querySelector('input[name="hadraType"]:checked').value;
 
-                if (hadraType === "full") {
-                    o += `ഹള്റ\n\nമുസ്തഫ്തിഹ് : ${v("mustafthih")}\n\n`;
-                    o += `ബുസ്ത് 1 : ${v("bust1Main")} (Main)\n\n${csv("bust1List")}\n\n`;
-                    if (v("madad")) o += `മദദ്: ${v("madad")}\n\n`;
-                    if (v("q1")) o += `ഖസീദ 1 : ${v("q1")}\n`;
-                    if (v("q2")) o += `ഖസീദ 2 : ${v("q2")}\n\n`;
-                    if (v("fardani")) o += `ഫർദാനി 1 : ${v("fardani")}\n\n`;
-                    o += `ബുസ്ത് 2 : ${v("bust2Main")} (Main)\n\n${csv("bust2List")}\n\n`;
-                    if (v("q3")) o += `Qaseeda 3 : ${v("q3")}\n`;
-                    if (v("q4")) o += `Qaseeda 4 : ${v("q4")}\n\n`;
-                    if (v("dua")) o += `Fawatih 2 & Dua\n${v("dua")}\n\n`;
-                    o += `*******\n\n`;
-                } else if (hadraType === "short") {
-                    o += `മുസ്തഫ്തിഹ് :  ${v("mustafthih")}\n\n`;
-                    o += `സാഹിബുൽ ബുസ്ത് 1 : ${v("bust1Main")}\n`;
-
-                    // Numbering the bust list items for short format
-                    let b1List = v("bust1List").split(/\n+/).map(s => s.trim()).filter(Boolean);
-                    if (b1List.length > 0) {
-                        b1List.forEach((name, i) => { o += `${i + 1}. ${name}\n`; });
+                if (hadraType === "full" || hadraType === "short") {
+                    if (hadraType === "short") {
+                        o += `*ഹള്റ(ഷോർട്ട്)*\n\n`;
+                    } else {
+                        o += `*ഹള്റ*\n\n`;
                     }
-                    o += `\n`;
 
-                    if (v("q1")) o += `ഖസീദ 1 : ${v("q1")}\n`;
-                    if (v("q2")) o += `ഖസീദ 2 : ${v("q2")}\n\n`;
+                    if (v("masool")) o += `*മസ്ഊലുൽ ഹള്റ* : ${v("masool")}  \n`;
+                    if (v("mustafthih")) o += `*മുസ്തഫ്തിഹ്* : ${v("mustafthih")}  \n\n`;
+                    if (v("madad") && hadraType === "full") o += `*മദദ്* : ${v("madad")}  \n\n`;
 
-                    o += `സാഹിബുൽ ബുസ്ത് 2 : ${v("bust2Main")} (Main)\n\n`;
-
-                    let b2List = v("bust2List").split(/\n+/).map(s => s.trim()).filter(Boolean);
-                    if (b2List.length > 0) {
-                        b2List.forEach((name, i) => { o += `${i + 1}. ${name}\n`; });
+                    o += `*തബക് 1*\n*ബുസ്ത് 1* :  \n${v("bust1Main")} *(Main)*  \n`;
+                    const b1Array = v("bust1List").split(/\n+/).map(s => s.trim()).filter(Boolean);
+                    if (b1Array.length > 0) {
+                        o += b1Array.join(", ") + "  \n";
                     }
-                    o += `\n******\n\n`;
 
-                    if (v("fardani")) o += `Fardani:  ${v("fardani")}\n\n`;
-                    if (v("q3")) o += `Qaseeda 3:  ${v("q3")}\n`;
-                    if (v("q4")) o += `Qaseeda 4 :  ${v("q4")}\n\n`;
+                    if (v("q1")) o += `*ഖസീദ 1* : ${v("q1")}  \n`;
+                    if (v("q2")) o += `*ഖസീദ 2* : ${v("q2")}  \n\n`;
 
-                    if (v("dua")) o += `Fawatih 2 & Dua \n${v("dua")}\n\n`;
-                    o += `*******\n\n`;
+                    if (v("fardani")) o += `*ഫർദാനി 1* : ${v("fardani")}  \n\n`;
+
+                    o += `*തബക് 2*\n*ബുസ്ത് 2* :  \n${v("bust2Main")} *(Main)*  \n`;
+                    const b2Array = v("bust2List").split(/\n+/).map(s => s.trim()).filter(Boolean);
+                    if (b2Array.length > 0) {
+                        o += b2Array.join(", ") + "  \n";
+                    }
+
+                    if (v("q3")) o += `*ഖസീദ 3* : ${v("q3")}  \n`;
+                    if (v("q4")) o += `*ഖസീദ 4* : ${v("q4")}  \n\n`;
+
+                    if (v("dua")) o += `*Fawatih 2 & Dua* : ${v("dua")}\n\n`;
                 }
             }
 
-            if (v("munshideen")) o += `മുൻഷിദീങ്ങൾ :\n${csv("munshideen")}\n\n********\n\n`;
-
-            if (v("isha")) o += `الصلاة العشاء\nഇമാം: ${v("isha")}\n\n`;
-            if (v("tarawih")) o += `الصلاة تراويح\nഇമാം:\n${csv("tarawih")}\n\n********\n\n`;
-
-            if (v("umana")) o += `*******\nപങ്കെടുത്ത മജ്ലിസുൽ ഉമന അംഗങ്ങൾ\n${csv("umana")}\n\n`;
-
-            if (v("nafah")) o += `● നഫഹ\n\n${csv("nafah")}\n\n********\n\n`;
-
-            // Process Puthiya Bay'ah (Men)
-            let bayahMenEntries = [];
-            document.querySelectorAll("#bayahContainer .bayah-entry").forEach(entry => {
-                let name = entry.querySelector(".bayahName").value.trim();
-                let murshid = entry.querySelector(".bayahMurshid").value.trim();
-                if (name) bayahMenEntries.push({ name, murshid });
-            });
-
-            // Process Puthiya Bay'ah (Sayyidath)
-            let bayahSayyidathEntries = [];
-            document.querySelectorAll("#bayahSContainer .bayah-entry").forEach(entry => {
-                let sName = entry.querySelector(".bayahSName").value.trim();
-                let sMurshid = entry.querySelector(".bayahSMurshid").value.trim();
-                if (sName) bayahSayyidathEntries.push({ name: sName, murshid: sMurshid });
-            });
-
-            if (bayahMenEntries.length > 0 || bayahSayyidathEntries.length > 0) {
-                o += `പുതിയ ബൈഅത്ത്\n\n`;
-
-                if (bayahMenEntries.length > 0) {
-                    o += `റിജാൽ\n\n`;
-                    bayahMenEntries.forEach(entry => {
-                        o += `പേര്: ${entry.name}\nമുർഷിദ്: ${entry.murshid}\n\n`;
-                    });
-                }
-
-                if (bayahSayyidathEntries.length > 0) {
-                    o += `സയ്യിദാത്ത്\n\n`;
-                    bayahSayyidathEntries.forEach(entry => {
-                        o += `പേര്: ${entry.name}\nമുർഷിദ്: ${entry.murshid}\n\n`;
-                    });
-                }
-
-                o += `*******\n\n`;
+            if (v("munshideen")) {
+                o += `*മുൻഷിദീങ്ങൾ*\n${csv("munshideen")}\n${sep}\n`;
             }
 
-            if (men || say || kid) {
-                o += `പങ്കെടുത്തവർ\n\nപുരുഷന്മാർ  : ${men}\nസയ്യിദാത്ത്  : ${say}\nകുട്ടികൾ      : ${kid}\n\n  ആകെ=   ${total}\n\n`;
+            if (v("isha")) o += `*الصلاة العشاء*\n*ഇമാം* : ${v("isha")}\n${sep}\n`;
+
+            if (v("tarawih")) {
+                o += `*الصلاة تراويح*\n*ഇമാംമാർ* :  \n`;
+                let tList = v("tarawih").split(/\n+/).map(s => s.trim()).filter(Boolean);
+                tList.forEach(name => o += `${name}  \n`);
+                o += `${sep}\n`;
             }
 
-            if (v("preparedBy")) o += `Report prepared by : ${v("preparedBy")}\n\n`;
-            if (v("verifiedBy")) o += `Report verified by : ${v("verifiedBy")}\n`;
+            if (!isSchedule && v("umana")) {
+                o += `*പങ്കെടുത്ത മജ്ലിസുൽ ഉമന അംഗങ്ങൾ*\n${csv("umana")}\n${sep}\n`;
+            }
 
-            document.getElementById("output").textContent = o;
+            if (!isSchedule && v("nafah")) {
+                o += `*നഫഹ*\n${v("nafah")}\n${sep}\n`;
+            }
+
+
+            if (!isSchedule) {
+                // Process Puthiya Bay'ah (Men)
+                let bayahMenEntries = [];
+                document.querySelectorAll("#bayahContainer .bayah-entry").forEach(entry => {
+                    let name = entry.querySelector(".bayahName").value.trim();
+                    let murshid = entry.querySelector(".bayahMurshid").value.trim();
+                    if (name) bayahMenEntries.push({ name, murshid });
+                });
+
+                // Process Puthiya Bay'ah (Sayyidath)
+                let bayahSayyidathEntries = [];
+                document.querySelectorAll("#bayahSContainer .bayah-entry").forEach(entry => {
+                    let sName = entry.querySelector(".bayahSName").value.trim();
+                    let sMurshid = entry.querySelector(".bayahSMurshid").value.trim();
+                    if (sName) bayahSayyidathEntries.push({ name: sName, murshid: sMurshid });
+                });
+
+                if (bayahMenEntries.length > 0 || bayahSayyidathEntries.length > 0) {
+                    o += `*പുതിയ ബൈഅത്ത്*\n\n`;
+
+                    if (bayahMenEntries.length > 0) {
+                        o += `*റിജാൽ*\n`;
+                        bayahMenEntries.forEach(entry => {
+                            o += `⁠● പേര് : ${entry.name}  \n മുർഷിദ് : ${entry.murshid}  \n\n`;
+                        });
+                    }
+
+                    if (bayahSayyidathEntries.length > 0) {
+                        o += `*സയ്യിദാത്ത്*\n`;
+                        bayahSayyidathEntries.forEach(entry => {
+                            o += `⁠● പേര് : ${entry.name}  \n മുർഷിദ് : ${entry.murshid}  \n\n`;
+                        });
+                    }
+
+                    o += `${sep}\n`;
+                }
+            }
+
+            if (!isSchedule && (men || say || kid)) {
+                o += `*പങ്കെടുത്തവർ*\n   പുരുഷന്മാർ : ${men}  \n   സയ്യിദാത്ത് : ${say}  \n   കുട്ടികൾ : ${kid}  \n   *ആകെ* : *${total}*\n${sep}\n`;
+            }
+
+            if (!isSchedule && v("preparedBy")) o += `*Report prepared by* : ${v("preparedBy")}  \n`;
+            if (!isSchedule && v("verifiedBy")) o += `*Report verified by* : ${v("verifiedBy")}\n`;
+
+            // If we are in schedule mode, maybe strip excessive empty lines to clean the output up
+            if (isSchedule) {
+                o = o.replace(/\n{3,}/g, '\n\n');
+            }
+
+            // Save the raw text (with asterisks)
+            window.generatedRawText = o.trim();
+
+            // Render bolding for preview by converting *text* to <b>text</b>
+            let previewHTML = window.generatedRawText.replace(/\*(.*?)\*/g, "<b>$1</b>");
+
+            // Render newlines as <br> for HTML display
+            document.getElementById("output").innerHTML = previewHTML;
         }
 
         function shareWhatsApp() {
-            const t = document.getElementById("output").textContent;
-            if (!t) { alert("Please generate the program first"); return; }
-            window.open("https://wa.me/?text=" + encodeURIComponent(t), "_blank");
+            if (!window.generatedRawText) { alert("Please generate the program first"); return; }
+            window.open("https://wa.me/?text=" + encodeURIComponent(window.generatedRawText), "_blank");
         }
 
         async function sendToDocs() {
-            const t = document.getElementById("output").textContent;
-            if (!t) {
+            if (!window.generatedRawText) {
                 alert("Please generate the program first");
                 return;
             }
+
+            let t = window.generatedRawText;
 
             // This is the URL of your deployed Google Apps Script Web App
             const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwqadY-LIsI7PhWxN6JleXwPcWGiLApeM5LFCgseKPmUBODd4jxfw2GkPW1mDx_-b-6tg/exec";
