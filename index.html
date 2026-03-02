@@ -136,6 +136,12 @@
             background-color: var(--surface-color);
         }
 
+        /* Hide default datalist arrow in Chrome/Safari to prevent confusion on Android */
+        input::-webkit-calendar-picker-indicator,
+        input::-webkit-list-button {
+            display: none !important;
+        }
+
         textarea {
             resize: vertical;
             min-height: 80px;
