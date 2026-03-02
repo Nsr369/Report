@@ -787,6 +787,9 @@
 
             let t = window.generatedRawText;
 
+            // Remove WhatsApp bold markers for the Google Docs plain text
+            t = t.replace(/\*/g, '');
+
             // This is the URL of your deployed Google Apps Script Web App
             const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwqadY-LIsI7PhWxN6JleXwPcWGiLApeM5LFCgseKPmUBODd4jxfw2GkPW1mDx_-b-6tg/exec";
 
