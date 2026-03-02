@@ -442,6 +442,20 @@
         </div>
 
         <div class="section">
+            <h3>ഖസീദ മജ്ലിസ</h3>
+            <label>നേതൃത്വം</label>
+            <div id="qaseedaMajlisContainer">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input list="nameList" placeholder="പേര്">
+                    <button type="button" onclick="this.parentElement.remove()">X</button>
+                </div>
+            </div>
+            <button type="button" onclick="addDynamicInput('qaseedaMajlisContainer')"
+                style="padding: 5px 10px; font-size: 14px; margin-bottom: 15px; background: transparent; color: var(--primary); border: 1px solid var(--primary); box-shadow: none;">+
+                Add More</button>
+        </div>
+
+        <div class="section">
             <h3>നമസ്‌കാരം</h3>
 
             <label>ഇഷാ ഇമാം</label>
@@ -694,6 +708,10 @@
 
             if (v("munshideen")) {
                 o += `*മുൻഷിദീങ്ങൾ*\n${csv("munshideen")}\n${sep}\n`;
+            }
+
+            if (v("qaseedaMajlis")) {
+                o += `*ഖസീദ മജ്ലിസ*\n*നേതൃത്വം* : ${csv("qaseedaMajlis")}\n${sep}\n`;
             }
 
             if (v("isha")) o += `*الصلاة العشاء*\n*ഇമാം* : ${v("isha")}\n${sep}\n`;
