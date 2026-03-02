@@ -607,6 +607,7 @@
             const isSchedule = document.querySelector('input[name="modeType"]:checked').value === 'schedule';
 
             let men = +v("men") || 0, say = +v("sayyidath") || 0, kid = +v("children") || 0;
+            let total = men + say + kid;
             const sep = '\u{2501}'.repeat(14);
 
             let rawDate = v("date");
