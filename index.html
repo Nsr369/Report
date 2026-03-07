@@ -286,6 +286,148 @@
         .schedule-mode .hide-on-schedule {
             display: none !important;
         }
+
+        /* History Section Styles */
+        .history-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-2);
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 24px;
+            transition: transform 0.2s ease;
+        }
+
+        .history-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .history-panel {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background: var(--surface-color);
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .history-panel.open {
+            right: 0;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .history-header h3 {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .close-history {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            box-shadow: none;
+            width: auto;
+            height: auto;
+        }
+
+        .close-history:hover {
+            background: none;
+            color: var(--primary);
+            box-shadow: none;
+            transform: none;
+        }
+
+        .history-item {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fcfbf9;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .history-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .history-item-title {
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .history-item-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .delete-history-btn {
+            background: none;
+            border: none;
+            color: #d32f2f;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 16px;
+            border-radius: 4px;
+            opacity: 0.7;
+            transition: opacity 0.2s, background 0.2s;
+        }
+
+        .delete-history-btn:hover {
+            opacity: 1;
+            background: #fce8e8;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .history-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .history-overlay.show {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -321,40 +463,54 @@
             <option value="റാഷിദ് ഉദുമ">
         </datalist>
 
+        <datalist id="dutyOptions">
+            <option value="الحزب السيفي">
+            <option value="الحزب الكبير">
+            <option value="المرتبة الصمدية">
+            <option
+                value="٣٣/١٠٠ لمولانا الشيخ مختار علي محمد الدسوقي رضي الله عنه و مولانا الشيخ محمد عثمان عبده البرهاني رضي الله عنه">
+        </datalist>
+
         <div class="section">
             <h3>ഇമാം / നേതൃത്വം</h3>
 
             <label>മഗ്രിബ് ഇമാം</label>
             <input list="nameList" id="maghrib">
 
-            <label>നേതൃത്വം</label>
+            <label>الواجب الشهري</label>
+            <div style="display: flex; gap: 8px;">
+                <input list="nameList" id="monthlyDuty" placeholder="നേതൃത്വം (പേര്)">
+                <input list="dutyOptions" id="monthlyDutyType" class="hide-on-schedule"
+                    placeholder="ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക">
+            </div>
+
+            <label>الواجب العائلى</label>
             <input list="nameList" id="family">
+            <div class="hide-on-schedule"
+                style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                <h3>ഖുർആൻ & ഖസീദ</h3>
 
-            <label>ദർസ് നടത്തുന്നവർ</label>
-            <input list="nameList" id="dars">
+                <label>ഖുർആൻ പേജ് നമ്പർ</label>
+                <input id="surahPage">
 
-            <div class="hide-on-schedule">
-                <label>ദർസ് അവലംബം</label>
-                <input id="darsRef">
+                <label>ആയത്ത് നമ്പർ</label>
+                <input id="ayah">
+
+                <label>ഖസീദ പേജ് നമ്പർ</label>
+                <input id="qPage">
+
+                <label>ബൈത് നമ്പർ</label>
+                <input id="baith">
             </div>
         </div>
+        <div class="section">
+            <h3>ദർസ്</h3>
+            <label>നടത്തുന്നവർ</label>
+            <input list="nameList" id="dars">
 
-        <div class="section hide-on-schedule">
-            <h3>ഖുർആൻ & ഖസീദ</h3>
-
-            <label>ഖുർആൻ പേജ് നമ്പർ</label>
-            <input id="surahPage">
-
-            <label>ആയത്ത് നമ്പർ</label>
-            <input id="ayah">
-
-            <label>ഖസീദ പേജ് നമ്പർ</label>
-            <input id="qPage">
-
-            <label>ബൈത് നമ്പർ</label>
-            <input id="baith">
+            <label> അവലംബം</label>
+            <input id="darsRef">
         </div>
-
         <div class="section">
             <h3>മുറാഖബ</h3>
 
@@ -548,16 +704,291 @@
 
         <div class="btn-group">
             <button onclick="generate()">Generate Program</button>
-            <button onclick="shareWhatsApp()" style="background-color: #25d366; color: white;">Send to WhatsApp</button>
+            <button onclick="shareWhatsApp()" style="background-color: #25d366; color: white;">Send to
+                WhatsApp</button>
             <button class="hide-on-schedule" onclick="sendToDocs()"
                 style="background-color: #4285f4; color: white;">Send to Google Docs</button>
         </div>
 
         <pre id="output"></pre>
+
+        <div class="history-overlay" id="historyOverlay" onclick="toggleHistory()"></div>
+        <div class="history-panel" id="historyPanel">
+            <div class="history-header">
+                <h3>Global History</h3>
+                <button class="close-history" onclick="toggleHistory()">&times;</button>
+            </div>
+            <div id="historyList">
+                <!-- History items will be populated here -->
+            </div>
+        </div>
+
+        <div class="history-btn" onclick="toggleHistory()" title="View History">
+            &#128196;
+        </div>
     </div> <!-- End container -->
 
     <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwpg5NPn9bJuw2VBYyV6lnxOlzRKBSYAqTN07O-ze7j1_SuaorddULayyadxTvNHxvKdw/exec";
+        window.loadedHistory = [];
+
         document.getElementById("date").valueAsDate = new Date();
+
+        // History Management Functions
+        function toggleHistory() {
+            const panel = document.getElementById('historyPanel');
+            const overlay = document.getElementById('historyOverlay');
+            panel.classList.toggle('open');
+            if (panel.classList.contains('open')) {
+                overlay.classList.add('show');
+                fetchHistory(); // Fetch from server instead of rendering local
+            } else {
+                overlay.classList.remove('show');
+            }
+        }
+
+        function saveToHistory(reportText) {
+            const dateStr = document.getElementById("date").value;
+            const mode = document.querySelector('input[name="modeType"]:checked').value;
+            const title = mode === 'schedule' ? `Schedule: ${dateStr}` : `Report: ${dateStr}`;
+
+            // Gather all input states to rebuild the form later
+            const formState = {
+                modeType: mode,
+                hadraType: document.querySelector('input[name="hadraType"]:checked').value,
+                inputs: {}
+            };
+
+            document.querySelectorAll('input:not([type="radio"]), textarea').forEach(el => {
+                if (el.id) {
+                    formState.inputs[el.id] = el.value;
+                }
+            });
+
+            // Gather dynamic lists
+            ['bust1ListContainer', 'bust2ListContainer', 'munshideenContainer', 'qaseedaMajlisContainer', 'tarawihContainer', 'nafahContainer'].forEach(id => {
+                const container = document.getElementById(id);
+                if (container) {
+                    formState[id] = Array.from(container.querySelectorAll('input')).map(input => input.value);
+                }
+            });
+
+            // Gather Bayah entries
+            const extractBayah = (containerId, nameClass, murshidClass) => {
+                const container = document.getElementById(containerId);
+                if (!container) return [];
+                return Array.from(container.querySelectorAll('.bayah-entry')).map(entry => ({
+                    name: entry.querySelector(`.${nameClass}`).value,
+                    murshid: entry.querySelector(`.${murshidClass}`).value
+                }));
+            };
+
+            formState.bayahMen = extractBayah('bayahContainer', 'bayahName', 'bayahMurshid');
+            formState.bayahSayyidath = extractBayah('bayahSContainer', 'bayahSName', 'bayahSMurshid');
+
+            const payload = new URLSearchParams({
+                action: 'saveHistory',
+                id: Date.now().toString(),
+                title: title,
+                timestamp: new Date().toLocaleString(),
+                stateJson: JSON.stringify(formState),
+                reportText: reportText
+            });
+
+            // Fire and forget server save
+            fetch(WEB_APP_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: payload.toString()
+            }).catch(e => console.error("Error saving global history:", e));
+
+            // Re-render history if the panel is open while saving
+            const panel = document.getElementById('historyPanel');
+            if (panel && panel.classList.contains('open')) {
+                fetchHistory(); // Refresh to see changes
+            }
+        }
+
+        async function fetchHistory() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '<p style="text-align: center; margin-top: 20px;">Loading online history...</p>';
+
+            try {
+                const response = await fetch(WEB_APP_URL + "?action=getHistory");
+                const result = await response.json();
+
+                if (result.status === "success" && result.data) {
+                    window.loadedHistory = result.data;
+                    renderHistoryItems(window.loadedHistory);
+                } else {
+                    historyList.innerHTML = '<p style="text-align: center; margin-top: 20px; color: #d32f2f;">Failed to load history.</p>';
+                }
+            } catch (err) {
+                historyList.innerHTML = '<p style="text-align: center; margin-top: 20px; color: #d32f2f;">Error checking global history.</p>';
+                console.error(err);
+            }
+        }
+
+        function renderHistoryItems(history) {
+            const historyList = document.getElementById('historyList');
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<p style="text-align: center; margin-top: 20px;">No history saved yet.</p>';
+                return;
+            }
+
+            historyList.innerHTML = history.map(item => `
+                <div class="history-item" onclick="loadHistoryItem('${item.id}')">
+                    <div>
+                        <div class="history-item-title">${item.title}</div>
+                        <div class="history-item-date">${item.timestamp}</div>
+                    </div>
+                    <button class="delete-history-btn" onclick="deleteHistoryItem('${item.id}', event)" title="Delete Report">🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        function deleteHistoryItem(id, event) {
+            // Stop the click from triggering loadHistoryItem
+            event.stopPropagation();
+
+            if (confirm("Are you sure you want to completely delete this saved report for everyone?")) {
+                const historyList = document.getElementById('historyList');
+                historyList.innerHTML = '<p style="text-align: center; margin-top: 20px;">Deleting online...</p>';
+
+                const payload = new URLSearchParams({
+                    action: 'deleteHistory',
+                    id: id
+                });
+
+                fetch(WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: payload.toString()
+                }).then(() => {
+                    // Wait 1 second for Google Sheets to process then refetch
+                    setTimeout(() => fetchHistory(), 1000);
+                }).catch(e => {
+                    console.error("Delete failed", e);
+                    fetchHistory();
+                });
+            }
+        }
+
+        function loadHistoryItem(id) {
+            const history = window.loadedHistory || [];
+            const item = history.find(h => h.id === id);
+
+            if (!item) return;
+
+            // Confirm before overwriting
+            if (!confirm("Load this report? Any unsaved changes in the current form will be lost.")) return;
+
+            const state = item.formState;
+
+            // Restore Modes
+            document.querySelector(`input[name="modeType"][value="${state.modeType}"]`).checked = true;
+            if (state.modeType === 'schedule') {
+                document.body.classList.add('schedule-mode');
+            } else {
+                document.body.classList.remove('schedule-mode');
+            }
+
+            document.querySelector(`input[name="hadraType"][value="${state.hadraType}"]`).checked = true;
+            // Trigger hadra change logic manually
+            const madadSection = document.getElementById('madadSection');
+            if (state.hadraType === 'short') {
+                madadSection.style.display = 'none';
+            } else {
+                madadSection.style.display = 'block';
+            }
+
+            // Restore normal inputs
+            for (const [id, value] of Object.entries(state.inputs)) {
+                const el = document.getElementById(id);
+                if (el) el.value = value;
+            }
+
+            // Helper to restore dynamic lists
+            const restoreDynamicList = (containerId, values, placeholder) => {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                // Keep the first empty input template (the structural HTML requirement requires at least one block sometimes, wait, actually let's just clear and rebuild)
+                container.innerHTML = '';
+
+                if (!values || values.length === 0) {
+                    addDynamicInput(containerId, placeholder);
+                    return;
+                }
+
+                values.forEach(val => {
+                    const div = document.createElement("div");
+                    div.style.cssText = "display: flex; gap: 8px; margin-bottom: 8px;";
+                    div.innerHTML = `
+                        <input list="nameList" placeholder="${placeholder}" value="${val}">
+                        <button type="button" onclick="this.parentElement.remove()">X</button>
+                    `;
+                    container.appendChild(div);
+                });
+            };
+
+            restoreDynamicList('bust1ListContainer', state.bust1ListContainer, "പേര്");
+            restoreDynamicList('bust2ListContainer', state.bust2ListContainer, "പേര്");
+            restoreDynamicList('munshideenContainer', state.munshideenContainer, "പേര്");
+            restoreDynamicList('qaseedaMajlisContainer', state.qaseedaMajlisContainer, "പേര്");
+            restoreDynamicList('tarawihContainer', state.tarawihContainer, "പേര്");
+            restoreDynamicList('nafahContainer', state.nafahContainer, "പേര്");
+
+            // Restore Bayah
+            const restoreBayah = (containerId, entries, isSayyidath) => {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                container.innerHTML = '';
+
+                if (!entries || entries.length === 0) return;
+
+                const nameClass = isSayyidath ? "bayahSName" : "bayahName";
+                const murshidClass = isSayyidath ? "bayahSMurshid" : "bayahMurshid";
+                const nameLabel = isSayyidath ? "സയ്യിദാത്ത് പേര് (ഐച്ഛികം)" : "പേര്";
+                const murshidLabel = isSayyidath ? "സയ്യിദാത്ത് മുർഷിദ് (ഐച്ഛികം)" : "മുർഷിദ്";
+
+                entries.forEach(entry => {
+                    const div = document.createElement("div");
+                    div.className = "bayah-entry";
+                    div.style.cssText = "margin-bottom: 15px; padding: 10px; background: #f9f9f9; border: 1px solid #ddd; position: relative;";
+                    div.innerHTML = `
+                        <button type="button" onclick="this.parentElement.remove()" style="position: absolute; right: 10px; top: 10px; background: #ff4444; color: white; border: none; padding: 5px 10px; cursor: pointer;">X</button>
+                        <label>${nameLabel}</label>
+                        <input class="${nameClass}" value="${entry.name}">
+                        
+                        <label>${murshidLabel}</label>
+                        <input list="nameList" class="${murshidClass}" value="${entry.murshid}">
+                    `;
+                    container.appendChild(div);
+                });
+            };
+
+            restoreBayah('bayahContainer', state.bayahMen, false);
+            restoreBayah('bayahSContainer', state.bayahSayyidath, true);
+
+            // Close panel and regenerate text
+            toggleHistory();
+
+            // Re-render the saved text physically on the screen without re-triggering save
+            window.generatedRawText = item.reportText;
+            let previewHTML = window.generatedRawText.replace(/\*(.*?)\*/g, "<b>$1</b>");
+            document.getElementById("output").innerHTML = previewHTML;
+        }
+
+        function clearHistory() {
+            if (confirm("Are you sure you want to delete all saved reports?")) {
+                localStorage.removeItem('qitha_history');
+                renderHistory();
+            }
+        }
 
         function v(id) {
             const el = document.getElementById(id);
@@ -582,10 +1013,11 @@
             const div = document.createElement("div");
             div.style.cssText = "display: flex; gap: 8px; margin-bottom: 8px;";
             div.innerHTML = `
-                <input list="nameList" placeholder="${placeholderText}">
-                <button type="button" onclick="this.parentElement.remove()">X</button>
+                <input list="nameList" placeholder="${placeholderText}" onchange="saveDraft()">
+                <button type="button" onclick="this.parentElement.remove(); saveDraft();">X</button>
             `;
             container.appendChild(div);
+            saveDraft();
         }
 
         function addBayahEntry(containerId, isSayyidath = false) {
@@ -600,14 +1032,15 @@
             const murshidLabel = isSayyidath ? "സയ്യിദാത്ത് മുർഷിദ് (ഐച്ഛികം)" : "മുർഷിദ്";
 
             div.innerHTML = `
-                <button type="button" onclick="this.parentElement.remove()" style="position: absolute; right: 10px; top: 10px; background: #ff4444; color: white; border: none; padding: 5px 10px; cursor: pointer;">X</button>
+                <button type="button" onclick="this.parentElement.remove(); saveDraft();" style="position: absolute; right: 10px; top: 10px; background: #ff4444; color: white; border: none; padding: 5px 10px; cursor: pointer;">X</button>
                 <label>${nameLabel}</label>
-                <input class="${nameClass}">
+                <input class="${nameClass}" onchange="saveDraft()">
                 
                 <label>${murshidLabel}</label>
-                <input list="nameList" class="${murshidClass}">
+                <input list="nameList" class="${murshidClass}" onchange="saveDraft()">
             `;
             container.appendChild(div);
+            saveDraft();
         }
 
         // Toggle Madad visibility based on Hadra Type
@@ -648,6 +1081,12 @@
             }
 
             if (v("maghrib")) o += `*صلاة المغرب*\n*ഇമാം* : ${v("maghrib")}\n${sep}\n`;
+
+            if (v("monthlyDuty")) {
+                let dutyType = v("monthlyDutyType");
+                let dutyText = (!isSchedule && dutyType) ? ` - ${dutyType}` : "";
+                o += `*الواجب الشهري*\n*നേതൃത്വം* : ${v("monthlyDuty")}${dutyText}\n${sep}\n`;
+            }
 
             if (v("family")) o += `*الواجب العائلى*\n*നേതൃത്വം* : ${v("family")}\n\n`;
 
@@ -785,6 +1224,9 @@
             // Save the raw text (with asterisks)
             window.generatedRawText = o.trim();
 
+            // Save to LocalStorage History
+            saveToHistory(window.generatedRawText);
+
             // Render bolding for preview by converting *text* to <b>text</b>
             let previewHTML = window.generatedRawText.replace(/\*(.*?)\*/g, "<b>$1</b>");
 
@@ -808,13 +1250,15 @@
             // Remove WhatsApp bold markers for the Google Docs plain text
             t = t.replace(/\*/g, '');
 
-            // This is the URL of your deployed Google Apps Script Web App
-            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwqadY-LIsI7PhWxN6JleXwPcWGiLApeM5LFCgseKPmUBODd4jxfw2GkPW1mDx_-b-6tg/exec";
-
             const btn = document.querySelector('button[onclick="sendToDocs()"]');
             const originalText = btn.textContent;
             btn.textContent = "Sending...";
             btn.disabled = true;
+
+            const payload = new URLSearchParams({
+                action: 'sendToDoc',
+                text: t
+            });
 
             try {
                 // Using mode: 'no-cors' prevents CORS preflight issues when sending a simple form post to Apps Script.
@@ -824,7 +1268,7 @@
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                     },
-                    body: "text=" + encodeURIComponent(t)
+                    body: payload.toString()
                 });
 
                 alert("Successfully sent to Google Docs!");
