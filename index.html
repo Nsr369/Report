@@ -447,7 +447,8 @@
         <input type="date" id="date">
 
         <label>സ്ഥലം</label>
-        <select id="location"
+        <label>സ്ഥലം</label>
+        <select id="location" onchange="handleLocationChange()"
             style="width: 100%; padding: 12px; margin-bottom: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 15px; font-family: 'Roboto', sans-serif;">
             <option value="ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്">ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്</option>
             <option value="ദൗഹതുൽ കിറാം ഖത്തർ">ദൗഹതുൽ കിറാം ഖത്തർ</option>
@@ -471,9 +472,128 @@
         <datalist id="dutyOptions">
             <option value="الحزب السيفي">
             <option value="الحزب الكبير">
-            <option value="المرتبة الصمدية">
+            <option value="المرتبة الصمدية 313-41">
+            <option value="المرتبة الصمدية 777-70">
+            <option value="المرتبة الصمدية 1117-117">
             <option
                 value="٣٣/١٠٠ لمولانا الشيخ مختار علي محمد الدسوقي رضي الله عنه و مولانا الشيخ محمد عثمان عبده البرهاني رضي الله عنه">
+        </datalist>
+
+        <datalist id="surahList">
+            <option value="1. Al-Fatihah (الفاتحة)">
+            <option value="2. Al-Baqarah (البقرة)">
+            <option value="3. Ali 'Imran (آل عمران)">
+            <option value="4. An-Nisa (النساء)">
+            <option value="5. Al-Ma'idah (المائدة)">
+            <option value="6. Al-An'am (الأنعام)">
+            <option value="7. Al-A'raf (الأعراف)">
+            <option value="8. Al-Anfal (الأنفال)">
+            <option value="9. At-Tawbah (التوبة)">
+            <option value="10. Yunus (يونس)">
+            <option value="11. Hud (هود)">
+            <option value="12. Yusuf (يوسف)">
+            <option value="13. Ar-Ra'd (الرعد)">
+            <option value="14. Ibrahim (إبراهيم)">
+            <option value="15. Al-Hijr (الحجر)">
+            <option value="16. An-Nahl (النحل)">
+            <option value="17. Al-Isra (الإسراء)">
+            <option value="18. Al-Kahf (الكهف)">
+            <option value="19. Maryam (مريم)">
+            <option value="20. Taha (طه)">
+            <option value="21. Al-Anbiya (الأنبياء)">
+            <option value="22. Al-Hajj (الحج)">
+            <option value="23. Al-Mu'minun (المؤمنون)">
+            <option value="24. An-Nur (النور)">
+            <option value="25. Al-Furqan (الفرقان)">
+            <option value="26. Ash-Shu'ara (الشعراء)">
+            <option value="27. An-Naml (النمل)">
+            <option value="28. Al-Qasas (القصص)">
+            <option value="29. Al-'Ankabut (العنكبوت)">
+            <option value="30. Ar-Rum (الروم)">
+            <option value="31. Luqman (لقمان)">
+            <option value="32. As-Sajdah (السجدة)">
+            <option value="33. Al-Ahzab (الأحزاب)">
+            <option value="34. Saba (سبأ)">
+            <option value="35. Fatir (فاطر)">
+            <option value="36. Ya-Sin (يس)">
+            <option value="37. As-Saffat (الصافات)">
+            <option value="38. Sad (ص)">
+            <option value="39. Az-Zumar (الزمر)">
+            <option value="40. Ghafir (غافر)">
+            <option value="41. Fussilat (فصلت)">
+            <option value="42. Ash-Shura (الشورى)">
+            <option value="43. Az-Zukhruf (الزخرف)">
+            <option value="44. Ad-Dukhan (الدخان)">
+            <option value="45. Al-Jathiyah (الجاثية)">
+            <option value="46. Al-Ahqaf (الأحقاف)">
+            <option value="47. Muhammad (محمد)">
+            <option value="48. Al-Fath (الفتح)">
+            <option value="49. Al-Hujurat (الحجرات)">
+            <option value="50. Qaf (ق)">
+            <option value="51. Adh-Dhariyat (الذاريات)">
+            <option value="52. At-Tur (الطور)">
+            <option value="53. An-Najm (النجم)">
+            <option value="54. Al-Qamar (القمر)">
+            <option value="55. Ar-Rahman (الرحمن)">
+            <option value="56. Al-Waqi'ah (الواقعة)">
+            <option value="57. Al-Hadid (الحديد)">
+            <option value="58. Al-Mujadila (المجادلة)">
+            <option value="59. Al-Hashr (الحشر)">
+            <option value="60. Al-Mumtahanah (الممتحنة)">
+            <option value="61. As-Saff (الصف)">
+            <option value="62. Al-Jumu'ah (الجمعة)">
+            <option value="63. Al-Munafiqun (المنافقون)">
+            <option value="64. At-Taghabun (التغابن)">
+            <option value="65. At-Talaq (الطلاق)">
+            <option value="66. At-Tahrim (التحريم)">
+            <option value="67. Al-Mulk (الملك)">
+            <option value="68. Al-Qalam (القلم)">
+            <option value="69. Al-Haqqah (الحاقة)">
+            <option value="70. Al-Ma'arij (المعارج)">
+            <option value="71. Nuh (نوح)">
+            <option value="72. Al-Jinn (الجن)">
+            <option value="73. Al-Muzzammil (المزمل)">
+            <option value="74. Al-Muddaththir (المدثر)">
+            <option value="75. Al-Qiyamah (القيامة)">
+            <option value="76. Al-Insan (الإنسان)">
+            <option value="77. Al-Mursalat (المرسلات)">
+            <option value="78. An-Naba (النبأ)">
+            <option value="79. An-Nazi'at (النازعات)">
+            <option value="80. 'Abasa (عبس)">
+            <option value="81. At-Takwir (التكوير)">
+            <option value="82. Al-Infitar (الانفطار)">
+            <option value="83. Al-Mutaffifin (المطففين)">
+            <option value="84. Al-Inshiqaq (الانشقاق)">
+            <option value="85. Al-Buruj (البروج)">
+            <option value="86. At-Tariq (الطارق)">
+            <option value="87. Al-A'la (الأعلى)">
+            <option value="88. Al-Ghashiyah (الغاشية)">
+            <option value="89. Al-Fajr (الفجر)">
+            <option value="90. Al-Balad (البلد)">
+            <option value="91. Ash-Shams (الشمس)">
+            <option value="92. Al-Layl (الليل)">
+            <option value="93. Ad-Duha (الضحى)">
+            <option value="94. Ash-Sharh (الشرح)">
+            <option value="95. At-Tin (التين)">
+            <option value="96. Al-'Alaq (العلق)">
+            <option value="97. Al-Qadr (القدر)">
+            <option value="98. Al-Bayyinah (البينة)">
+            <option value="99. Az-Zalzalah (الزلزلة)">
+            <option value="100. Al-'Adiyat (العاديات)">
+            <option value="101. Al-Qari'ah (القارعة)">
+            <option value="102. At-Takathur (التكاثر)">
+            <option value="103. Al-'Asr (العصر)">
+            <option value="104. Al-Humazah (الهمزة)">
+            <option value="105. Al-Fil (الفيل)">
+            <option value="106. Quraysh (قريش)">
+            <option value="107. Al-Ma'un (الماعون)">
+            <option value="108. Al-Kawthar (الكوثر)">
+            <option value="109. Al-Kafirun (الكافرون)">
+            <option value="110. An-Nasr (النصر)">
+            <option value="111. Al-Masad (المسد)">
+            <option value="112. Al-Ikhlas (الإخلاص)">
+            <option value="113. Al-Falaq (الفلق)">
+            <option value="114. An-Nas (الناس)">
         </datalist>
 
         <div class="section">
@@ -494,6 +614,9 @@
             <div class="hide-on-schedule"
                 style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 24px;">
                 <h3>ഖുർആൻ & ഖസീദ</h3>
+
+                <label>സൂറത്ത്</label>
+                <input list="surahList" id="surahName">
 
                 <label>ഖുർആൻ പേജ് നമ്പർ</label>
                 <input id="surahPage">
@@ -603,7 +726,7 @@
         </div>
 
         <div class="section">
-            <h3>ഖസീദ മജ്ലിസ</h3>
+            <h3>ഖസീദ മജ്ലിസ്</h3>
             <label>നേതൃത്വം</label>
             <div id="qaseedaMajlisContainer">
                 <div style="display: flex; gap: 8px; margin-bottom: 8px;">
@@ -1039,6 +1162,54 @@
             });
         });
 
+        function handleLocationChange() {
+            const loc = document.getElementById("location").value;
+            const isQatar = loc === "ദൗഹതുൽ കിറാം ഖത്തർ";
+
+            // Find all inputs that could have the nameList
+            document.querySelectorAll('input').forEach(input => {
+                const hasListAttr = input.getAttribute('list') === 'nameList';
+                const hasBackupAttr = input.getAttribute('data-list') === 'nameList';
+
+                if (hasListAttr || hasBackupAttr) {
+                    if (isQatar) {
+                        // Remove autocomplete dropdown list connection
+                        if (hasListAttr) {
+                            input.setAttribute('data-list', 'nameList');
+                            input.removeAttribute('list');
+                        }
+                    } else {
+                        // Restore autocomplete connection
+                        if (hasBackupAttr) {
+                            input.setAttribute('list', 'nameList');
+                            input.removeAttribute('data-list');
+                        }
+                    }
+                }
+            });
+            // Calling saveDraft ensures we serialize this new UI state properly if needed
+            saveDraft();
+        }
+
+        // Attach global listeners for Auto-Save
+        document.addEventListener('input', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+                saveDraft();
+            }
+        });
+
+        document.addEventListener('change', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+                saveDraft();
+            }
+        });
+
+        // Initialize draft on load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadDraft();
+            handleLocationChange(); // Make sure location rules apply immediately on load
+        });
+
         function generate() {
             const isSchedule = document.querySelector('input[name="modeType"]:checked').value === 'schedule';
 
@@ -1075,8 +1246,12 @@
 
             if (v("family")) o += `*الواجب العائلى*\n*നേതൃത്വം* : ${v("family")}\n\n`;
 
-            if (!isSchedule && (v("surahPage") || v("ayah"))) {
-                o += `*ختم القرآن*\n*പേജ് നമ്പർ* : ${v("surahPage")}  \n*ആയത് നമ്പർ* : ${v("ayah")}\n\n`;
+            if (!isSchedule && (v("surahName") || v("surahPage") || v("ayah"))) {
+                let surahText = v("surahName") ? `*സൂറത്ത്* : ${v("surahName")}  \n` : "";
+                let pageText = v("surahPage") ? `*പേജ് നമ്പർ* : ${v("surahPage")}  \n` : "";
+                let ayahText = v("ayah") ? `*ആയത് നമ്പർ* : ${v("ayah")}\n\n` : "\n\n";
+
+                o += `*ختم القرآن*\n${surahText}${pageText}${ayahText}`;
                 o += `*ختم القصائد*\n*പേജ് നമ്പർ* : ${v("qPage")}  \n*ബൈത് നമ്പർ* : ${v("baith")}\n${sep}\n`;
             }
 
@@ -1106,10 +1281,13 @@
                     if (v("mustafthih")) o += `*മുസ്തഫ്തിഹ്* : ${v("mustafthih")}  \n\n`;
                     if (v("madad") && hadraType === "full") o += `*മദദ്* : ${v("madad")}  \n\n`;
 
-                    o += `*തബക് 1*\n*ബുസ്ത് 1* :  \n${v("bust1Main")} *(Main)*  \n`;
                     const b1Array = v("bust1List").split(/\n+/).map(s => s.trim()).filter(Boolean);
-                    if (b1Array.length > 0) {
-                        o += b1Array.join(", ") + "  \n";
+                    if (v("bust1Main") || b1Array.length > 0) {
+                        o += `*തബക് 1*\n*ബുസ്ത് 1* :  \n`;
+                        if (v("bust1Main")) o += `${v("bust1Main")} *(Main)*  \n`;
+                        if (b1Array.length > 0) {
+                            o += b1Array.join(", ") + "  \n";
+                        }
                     }
 
                     if (v("q1")) o += `*ഖസീദ 1* : ${v("q1")}  \n`;
@@ -1117,10 +1295,13 @@
 
                     if (v("fardani")) o += `*ഫർദാനി 1* : ${v("fardani")}  \n\n`;
 
-                    o += `*തബക് 2*\n*ബുസ്ത് 2* :  \n${v("bust2Main")} *(Main)*  \n`;
                     const b2Array = v("bust2List").split(/\n+/).map(s => s.trim()).filter(Boolean);
-                    if (b2Array.length > 0) {
-                        o += b2Array.join(", ") + "  \n";
+                    if (v("bust2Main") || b2Array.length > 0) {
+                        o += `*തബക് 2*\n*ബുസ്ത് 2* :  \n`;
+                        if (v("bust2Main")) o += `${v("bust2Main")} *(Main)*  \n`;
+                        if (b2Array.length > 0) {
+                            o += b2Array.join(", ") + "  \n";
+                        }
                     }
 
                     if (v("q3")) o += `*ഖസീദ 3* : ${v("q3")}  \n`;
@@ -1130,25 +1311,29 @@
                 }
             }
 
-            if (v("munshideen")) {
-                o += `*മുൻഷിദീങ്ങൾ*\n${csv("munshideen")}\n${sep}\n`;
+            const munshideenCSV = csv("munshideen");
+            if (munshideenCSV) {
+                o += `*മുൻഷിദീങ്ങൾ*\n${munshideenCSV}\n${sep}\n`;
             }
 
-            if (v("qaseedaMajlis")) {
-                o += `*ഖസീദ മജ്ലിസ*\n*നേതൃത്വം* : ${csv("qaseedaMajlis")}\n${sep}\n`;
+            const qmCSV = csv("qaseedaMajlis");
+            if (qmCSV) {
+                o += `*ഖസീദ മജ്ലിസ്*\n*നേതൃത്വം* : ${qmCSV}\n${sep}\n`;
             }
 
             if (v("isha")) o += `*الصلاة العشاء*\n*ഇമാം* : ${v("isha")}\n${sep}\n`;
 
-            if (v("tarawih")) {
+            let tarawihStr = v("tarawih");
+            let tList = tarawihStr ? tarawihStr.split(/\n+/).map(s => s.trim()).filter(Boolean) : [];
+            if (tList.length > 0) {
                 o += `*الصلاة تراويح*\n*ഇമാംമാർ* :  \n`;
-                let tList = v("tarawih").split(/\n+/).map(s => s.trim()).filter(Boolean);
                 tList.forEach(name => o += `${name}  \n`);
                 o += `${sep}\n`;
             }
 
-            if (!isSchedule && v("umana")) {
-                o += `*പങ്കെടുത്ത മജ്ലിസുൽ ഉമന അംഗങ്ങൾ*\n${csv("umana")}\n${sep}\n`;
+            const umanaCSV = csv("umana");
+            if (!isSchedule && umanaCSV) {
+                o += `*പങ്കെടുത്ത മജ്ലിസുൽ ഉമന അംഗങ്ങൾ*\n${umanaCSV}\n${sep}\n`;
             }
 
             if (!isSchedule && v("nafah")) {
