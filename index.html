@@ -446,7 +446,12 @@
         <label>തീയതി</label>
         <input type="date" id="date">
 
-        <p><b>സ്ഥലം:</b> ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്</p>
+        <label>സ്ഥലം</label>
+        <select id="location"
+            style="width: 100%; padding: 12px; margin-bottom: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 15px; font-family: 'Roboto', sans-serif;">
+            <option value="ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്">ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്</option>
+            <option value="ദൗഹതുൽ കിറാം ഖത്തർ">ദൗഹതുൽ കിറാം ഖത്തർ</option>
+        </select>
 
         <datalist id="nameList">
             <option value="മുഹ്സിൻ കാഞ്ഞങ്ങാട്">
@@ -706,7 +711,7 @@
             <button onclick="generate()">Generate Program</button>
             <button onclick="shareWhatsApp()" style="background-color: #25d366; color: white;">Send to
                 WhatsApp</button>
-            <button class="hide-on-schedule" onclick="sendToDocs()"
+            <button id="docsBtn" class="hide-on-schedule" onclick="sendToDocs()"
                 style="background-color: #4285f4; color: white;">Send to Google Docs</button>
         </div>
 
@@ -750,7 +755,8 @@
         function saveToHistory(reportText) {
             const dateStr = document.getElementById("date").value;
             const mode = document.querySelector('input[name="modeType"]:checked').value;
-            const title = mode === 'schedule' ? `Schedule: ${dateStr}` : `Report: ${dateStr}`;
+            const loc = document.getElementById("location").value;
+            const title = mode === 'schedule' ? `Schedule: ${dateStr} (${loc})` : `Report: ${dateStr} (${loc})`;
 
             // Gather all input states to rebuild the form later
             const formState = {
@@ -1051,10 +1057,12 @@
             }
 
             let o = "";
+            let locationVal = v("location");
+
             if (isSchedule) {
-                o = `*${formattedDate} ഹള്റ ഷെഡ്യൂൾ*\n*ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്*\n${sep}\n`;
+                o = `*${formattedDate} ഹള്റ ഷെഡ്യൂൾ*\n*${locationVal}*\n${sep}\n`;
             } else {
-                o = `*Date : ${rawDate}*\n*ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്*\n${sep}\n`;
+                o = `*Date : ${rawDate}*\n*${locationVal}*\n${sep}\n`;
             }
 
             if (v("maghrib")) o += `*صلاة المغرب*\n*ഇമാം* : ${v("maghrib")}\n${sep}\n`;
@@ -1209,6 +1217,14 @@
 
             // Render newlines as <br> for HTML display
             document.getElementById("output").innerHTML = previewHTML;
+
+            // Handle Docs Button Visibility (Only show for Kanhangad in Report mode)
+            const docsBtn = document.getElementById("docsBtn");
+            if (locationVal === "ദാറുൽ കിറാം കാഞ്ഞങ്ങാട്" && !isSchedule) {
+                docsBtn.style.display = "inline-flex";
+            } else {
+                docsBtn.style.display = "none";
+            }
         }
 
         function shareWhatsApp() {
