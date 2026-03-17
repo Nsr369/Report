@@ -267,6 +267,83 @@
             overflow-x: auto;
         }
 
+        /* ── Sortable Section Cards ── */
+        #sortableOutput {
+            margin-top: 24px;
+            display: none;
+        }
+
+        .sort-hint {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            box-shadow: 0 2px 6px rgba(46,92,70,0.05);
+            transition: box-shadow 0.2s ease, transform 0.15s ease;
+            cursor: default;
+            position: relative;
+        }
+
+        .section-card.pinned {
+            border-left-color: #a0aec0;
+            background: #fafafa;
+        }
+
+        .section-card.dragging {
+            opacity: 0.45;
+            box-shadow: 0 8px 20px rgba(46,92,70,0.18);
+        }
+
+        .section-card.drag-over {
+            border-top: 3px solid var(--primary);
+            transform: translateY(2px);
+        }
+
+        .drag-handle {
+            padding: 14px 10px 14px 14px;
+            cursor: grab;
+            color: #c0ccd8;
+            font-size: 18px;
+            user-select: none;
+            flex-shrink: 0;
+            touch-action: none;
+            line-height: 1;
+            align-self: center;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .section-card.pinned .drag-handle {
+            cursor: not-allowed;
+            opacity: 0.3;
+        }
+
+        .section-card-body {
+            flex: 1;
+            padding: 14px 18px 14px 4px;
+            white-space: pre-wrap;
+            font-family: inherit;
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: var(--text-primary);
+            min-width: 0;
+            word-break: break-word;
+        }
+
         p {
             color: var(--text-secondary);
             font-size: 15px;
@@ -838,7 +915,10 @@
                 style="background-color: #4285f4; color: white;">Send to Google Docs</button>
         </div>
 
-        <pre id="output"></pre>
+        <div id="sortableOutput">
+            <p class="sort-hint">☰ Drag sections to reorder before sharing</p>
+            <div id="sectionCards"></div>
+        </div>
 
         <div class="history-overlay" id="historyOverlay" onclick="toggleHistory()"></div>
         <div class="history-panel" id="historyPanel">
@@ -1397,11 +1477,8 @@
             // Save to LocalStorage History
             saveToHistory(window.generatedRawText);
 
-            // Render bolding for preview by converting *text* to <b>text</b>
-            let previewHTML = window.generatedRawText.replace(/\*(.*?)\*/g, "<b>$1</b>");
-
-            // Render newlines as <br> for HTML display
-            document.getElementById("output").innerHTML = previewHTML;
+            // Parse and render as draggable section cards
+            renderSectionCards(window.generatedRawText);
 
             // Handle Docs Button Visibility (Only show for Kanhangad in Report mode)
             const docsBtn = document.getElementById("docsBtn");
@@ -1412,52 +1489,185 @@
             }
         }
 
+        // ── Section Card Drag-and-Drop ──────────────────────────────────
+        const SEP = '\u2501'.repeat(14);
+
+        function renderSectionCards(rawText) {
+            const container = document.getElementById('sectionCards');
+            const wrapper = document.getElementById('sortableOutput');
+            container.innerHTML = '';
+            wrapper.style.display = 'block';
+
+            // Split by separator line; each chunk is one section (without trailing sep)
+            const parts = rawText.split('\n' + SEP + '\n');
+
+            // The last part may be an empty string or the footer (prepared/verified by) – keep as-is
+            parts.forEach((part, idx) => {
+                const trimmed = part.trim();
+                if (!trimmed) return;
+
+                const isPinned = idx === 0; // header is always first
+                const card = document.createElement('div');
+                card.className = 'section-card' + (isPinned ? ' pinned' : '');
+                card.setAttribute('draggable', isPinned ? 'false' : 'true');
+                card.dataset.raw = part; // store raw text for reconstruction
+
+                // Drag handle
+                const handle = document.createElement('span');
+                handle.className = 'drag-handle';
+                handle.textContent = '⠿';
+                handle.title = isPinned ? 'Header (fixed)' : 'Drag to reorder';
+
+                // Body
+                const body = document.createElement('div');
+                body.className = 'section-card-body';
+                body.innerHTML = trimmed.replace(/\*(.*?)\*/g, '<b>$1</b>');
+
+                card.appendChild(handle);
+                card.appendChild(body);
+                container.appendChild(card);
+
+                if (!isPinned) {
+                    setupDrag(card);
+                }
+            });
+        }
+
+        // Reconstruct the final raw text from current card order
+        function getTextFromCards() {
+            const cards = document.querySelectorAll('#sectionCards .section-card');
+            if (!cards.length) return window.generatedRawText || '';
+            const parts = [];
+            cards.forEach(card => {
+                const raw = card.dataset.raw;
+                if (raw && raw.trim()) parts.push(raw.trim());
+            });
+            return parts.join('\n' + SEP + '\n');
+        }
+
+        // ── Drag-and-Drop logic (mouse + touch) ──
+        let dragSrc = null;
+
+        function setupDrag(card) {
+            card.addEventListener('dragstart', (e) => {
+                dragSrc = card;
+                card.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+            });
+            card.addEventListener('dragend', () => {
+                dragSrc = null;
+                card.classList.remove('dragging');
+                document.querySelectorAll('.section-card').forEach(c => c.classList.remove('drag-over'));
+            });
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                if (dragSrc && dragSrc !== card && !card.classList.contains('pinned')) {
+                    document.querySelectorAll('.section-card').forEach(c => c.classList.remove('drag-over'));
+                    card.classList.add('drag-over');
+                }
+            });
+            card.addEventListener('dragleave', () => {
+                card.classList.remove('drag-over');
+            });
+            card.addEventListener('drop', (e) => {
+                e.preventDefault();
+                card.classList.remove('drag-over');
+                if (dragSrc && dragSrc !== card && !card.classList.contains('pinned')) {
+                    const container = document.getElementById('sectionCards');
+                    const cards = [...container.querySelectorAll('.section-card')];
+                    const srcIdx = cards.indexOf(dragSrc);
+                    const tgtIdx = cards.indexOf(card);
+                    // Don't move before the pinned header (index 0)
+                    if (tgtIdx === 0) return;
+                    if (srcIdx < tgtIdx) {
+                        container.insertBefore(dragSrc, card.nextSibling);
+                    } else {
+                        container.insertBefore(dragSrc, card);
+                    }
+                }
+            });
+
+            // Touch support
+            let touchStartY = 0;
+            let touchCard = null;
+            card.addEventListener('touchstart', (e) => {
+                touchCard = card;
+                touchStartY = e.touches[0].clientY;
+                card.classList.add('dragging');
+            }, { passive: true });
+            card.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const el = document.elementFromPoint(touch.clientX, touch.clientY);
+                const target = el ? el.closest('.section-card') : null;
+                document.querySelectorAll('.section-card').forEach(c => c.classList.remove('drag-over'));
+                if (target && target !== touchCard && !target.classList.contains('pinned')) {
+                    target.classList.add('drag-over');
+                }
+            }, { passive: false });
+            card.addEventListener('touchend', (e) => {
+                card.classList.remove('dragging');
+                const touch = e.changedTouches[0];
+                const el = document.elementFromPoint(touch.clientX, touch.clientY);
+                const target = el ? el.closest('.section-card') : null;
+                document.querySelectorAll('.section-card').forEach(c => c.classList.remove('drag-over'));
+                if (target && target !== touchCard && !target.classList.contains('pinned')) {
+                    const container = document.getElementById('sectionCards');
+                    const cards = [...container.querySelectorAll('.section-card')];
+                    const srcIdx = cards.indexOf(touchCard);
+                    const tgtIdx = cards.indexOf(target);
+                    if (tgtIdx === 0) return;
+                    if (srcIdx < tgtIdx) {
+                        container.insertBefore(touchCard, target.nextSibling);
+                    } else {
+                        container.insertBefore(touchCard, target);
+                    }
+                }
+                touchCard = null;
+            });
+        }
+
         function shareWhatsApp() {
-            if (!window.generatedRawText) { alert("Please generate the program first"); return; }
-            window.open("https://wa.me/?text=" + encodeURIComponent(window.generatedRawText), "_blank");
+            const text = getTextFromCards();
+            if (!text) { alert('Please generate the program first'); return; }
+            window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
         }
 
         async function sendToDocs() {
-            if (!window.generatedRawText) {
-                alert("Please generate the program first");
+            const text = getTextFromCards();
+            if (!text) {
+                alert('Please generate the program first');
                 return;
             }
 
-            let t = window.generatedRawText;
+            // Remove WhatsApp bold markers for plain text in Google Docs
+            let t = text.replace(/\*/g, '');
 
-            // Remove WhatsApp bold markers for the Google Docs plain text
-            t = t.replace(/\*/g, '');
-
-            // This is the URL of your deployed Google Apps Script Web App
-            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwqadY-LIsI7PhWxN6JleXwPcWGiLApeM5LFCgseKPmUBODd4jxfw2GkPW1mDx_-b-6tg/exec";
-
+            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwqadY-LIsI7PhWxN6JleXwPcWGiLApeM5LFCgseKPmUBODd4jxfw2GkPW1mDx_-b-6tg/exec';
             const btn = document.querySelector('button[onclick="sendToDocs()"]');
             const originalText = btn.textContent;
-            btn.textContent = "Sending...";
+            btn.textContent = 'Sending...';
             btn.disabled = true;
 
             try {
-                // Using mode: 'no-cors' prevents CORS preflight issues when sending a simple form post to Apps Script.
                 await fetch(WEB_APP_URL, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: "text=" + encodeURIComponent(t)
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'text=' + encodeURIComponent(t)
                 });
-
-                alert("Successfully sent to Google Docs!");
+                alert('Successfully sent to Google Docs!');
             } catch (err) {
-                alert("Error sending to Docs: " + err.message);
+                alert('Error sending to Docs: ' + err.message);
             } finally {
                 btn.textContent = originalText;
                 btn.disabled = false;
             }
         }
 
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js");
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
         }
     </script>
 
